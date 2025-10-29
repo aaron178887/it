@@ -1,0 +1,42 @@
+# ---- Env & config (tajné věci mimo git)
+.env
+.env.*
+!.env.example
+auth.json
+.phpactor.json
+
+# ---- Dependencies & build artefakty
+/node_modules
+/public/build
+/public/hot
+/vendor
+
+# ---- Laravel runtime
+/public/storage
+/storage/*.key
+/storage/pail
+/storage/app/*
+/storage/framework/*
+/storage/logs/*
+!/storage/app/public/.gitignore
+/bootstrap/cache/*.php
+
+# ---- Logy a cache
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.phpunit.result.cache
+
+# ---- IDE / OS
+/.fleet
+/.idea
+/.nova
+/.vscode
+/.zed
+.DS_Store
+Thumbs.db
+
+# ---- Homestead
+Homestead.json
+Homestead.yaml

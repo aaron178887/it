@@ -1,0 +1,44 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:ssr": "vite build --ssr",
+    "dev:ssr": "vite build --ssr --watch",
+    "dev:all": "concurrently -k -n WEB,SSR,PHP \"vite\" \"vite build --ssr --watch\" \"php artisan inertia:start-ssr\""
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.1",
+    "@inertiajs/vue3": "^2.1.3",
+    "@vitejs/plugin-vue": "^5.2.4",
+    "@vue/server-renderer": "^3.5.20",
+    "axios": "^1.11.0",
+    "bootstrap": "^5.3.8",
+    "concurrently": "^9.0.1",
+    "laravel-vite-plugin": "^1.0.4",
+    "sass": "^1.91.0",
+    "vite": "^6.3.5",
+    "vue": "^3.5.20"
+  },
+  "dependencies": {
+    "@inertiajs/progress": "^0.2.7",
+    "@tiptap/core": "^3.4.1",
+    "@tiptap/extension-bold": "^3.8.0",
+    "@tiptap/extension-bullet-list": "^3.4.1",
+    "@tiptap/extension-document": "^3.4.1",
+    "@tiptap/extension-hard-break": "^3.4.1",
+    "@tiptap/extension-heading": "^3.4.1",
+    "@tiptap/extension-highlight": "^3.8.0",
+    "@tiptap/extension-history": "^3.4.1",
+    "@tiptap/extension-italic": "^3.8.0",
+    "@tiptap/extension-list-item": "^3.4.1",
+    "@tiptap/extension-ordered-list": "^3.4.1",
+    "@tiptap/extension-paragraph": "^3.4.1",
+    "@tiptap/extension-placeholder": "^3.4.1",
+    "@tiptap/extension-text": "^3.4.1",
+    "@tiptap/extension-underline": "^3.8.0",
+    "@tiptap/vue-3": "^3.4.1",
+    "dompurify": "^3.3.0"
+  }
+}

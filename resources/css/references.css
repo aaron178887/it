@@ -1,0 +1,436 @@
+@charset "UTF-8";
+/* ==============================================
+   REFERENCES PAGE – FULL SCSS (scoped)
+   Vše mimo :root je omezené na .page-references
+   ============================================== */
+/* ------------------
+   VARIABLES (globální, v pohodě)
+   ------------------ */
+:root {
+  --Accent: #F52130;
+  --AccentHover: #ff5863;
+  --AccentActive: #d91522;
+  --White: #FFF;
+  --Black: #000;
+  --Base-100: #F5F5F5;
+  --Base-200: #E9EAEB;
+  --Base-300: #D5D7DA;
+  --Base-500: #717680;
+  --Base-700: #414651;
+  --SectionGap: 3rem;
+  --edge-mobile: 8px; /* mobilní okraj */
+}
+
+/* ODE TUD VŠE SCOPUJEME NA WRAPPER */
+.page-references {
+  /* ------------------
+     GLOBAL TEXT (jen v rámci této stránky)
+     ------------------ */
+  /* =======================
+     HERO (desktop/tablet)
+     ======================= */
+  /* Tablet ≤ 992px */
+  /* ===== MOBILE HERO (≤576 px) — Figma exact ===== */
+  /* =======================
+     STATS (Figma exact)
+     ======================= */
+  /* =======================
+     PARTNERS – head blok
+     ======================= */
+  /* Mobile tweaks for the head block (H4 specs from Figma) */
+  /* =======================
+     PARTNERS – cards
+     ======================= */
+  /* =======================
+     PARTNERS – mobile-only section & card tweaks
+     ======================= */
+}
+.page-references main p,
+.page-references main .small {
+  color: var(--Base-700);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+.page-references .references-hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 200px 8px 140px;
+  text-align: center;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url("/images/references/hero.jpg") center bottom/cover no-repeat;
+}
+.page-references .references-hero .overlay {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.page-references .references-hero h1 {
+  color: var(--White);
+  font-family: "Sora", sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 60px;
+  margin-bottom: 16px;
+}
+.page-references .references-hero p {
+  color: var(--White);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+@media (max-width: 992px) {
+  .page-references .references-hero {
+    padding: 160px 8px 100px;
+  }
+  .page-references .references-hero h1 {
+    font-size: 42px;
+    line-height: 48px;
+  }
+  .page-references .references-hero p {
+    font-size: 16px;
+  }
+}
+@media (max-width: 576px) {
+  .page-references {
+    /* DŮLEŽITÉ: už nepřepisuj globální .container!
+       Omez jen na kontejner přímo v hero. */
+  }
+  .page-references .references-hero .container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+  }
+  .page-references .references-hero {
+    display: flex;
+    height: 486px;
+    min-height: 486px;
+    padding: 80px 16px 64px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+    text-align: center;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), url("../images/references/hero.jpg") 50%/cover no-repeat;
+  }
+  .page-references .references-hero .overlay {
+    background: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .page-references .references-hero h1 {
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px; /* 120% */
+    margin: 0;
+  }
+  .page-references .references-hero p {
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0;
+    max-width: 342px;
+  }
+}
+.page-references .ref-stats {
+  padding: 64px 0;
+}
+.page-references .ref-stats .stat-col {
+  position: relative;
+}
+.page-references .ref-stats .stat-col::after {
+  display: none !important;
+}
+.page-references .ref-stats .stat {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--Base-300);
+  background: transparent;
+}
+.page-references .ref-stats .stat-ico {
+  width: 55px;
+  height: 55px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 2px solid var(--Base-200);
+  background: var(--White);
+}
+.page-references .ref-stats .stat-ico svg {
+  width: 70%;
+  height: 70%;
+  display: block;
+}
+.page-references .ref-stats .stat-title {
+  color: var(--Base-500);
+  text-align: center;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+.page-references .ref-stats .stat-value {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  margin: 0;
+}
+@media (max-width: 575.98px) {
+  .page-references .ref-stats {
+    padding: 48px 0;
+  }
+  .page-references .ref-stats .stat {
+    padding: 20px;
+    gap: 12px;
+  }
+  .page-references .ref-stats .stat-value {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
+.page-references main section .container > .col-md-7.mx-auto.text-center.mb-4 {
+  margin-top: 64px;
+  margin-bottom: 64px !important;
+}
+.page-references main section .container > .col-md-7.mx-auto.text-center.mb-4 > h2 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0 0 28px;
+}
+.page-references main section .container > .col-md-7.mx-auto.text-center.mb-4 > p {
+  color: var(--Base-700);
+  text-align: center;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+@media (max-width: 575.98px) {
+  .page-references main section .container > .col-md-7.mx-auto.text-center.mb-4 {
+    margin-top: 48px;
+    margin-bottom: 48px !important;
+  }
+  .page-references main section .container > .col-md-7.mx-auto.text-center.mb-4 > h2 {
+    font-size: 32px;
+    line-height: 36px; /* 112.5% */
+  }
+  .page-references main section .container > .col-md-7.mx-auto.text-center.mb-4 > p {
+    font-size: 16px;
+  }
+}
+.page-references main section.py-5 .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 8px;
+  border: 1px solid var(--Base-300);
+  background: var(--Base-200);
+  height: 100%;
+}
+.page-references main section.py-5 .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article > div:first-child {
+  display: flex;
+  height: 160px !important;
+  padding: 0 89px;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--White);
+}
+.page-references main section.py-5 .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article > h4 {
+  color: var(--Black);
+  align-self: stretch;
+  font-family: "Sora", sans-serif;
+  font-size: 24px; /* Heading/H5 */
+  font-weight: 700;
+  line-height: 28px; /* 116.667% */
+  margin: 0;
+}
+.page-references main section.py-5 .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article > p {
+  color: var(--Base-700);
+  align-self: stretch;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px; /* Text/Normal/Medium */
+  font-weight: 500;
+  margin: 0;
+}
+.page-references main section.py-5 .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article > button.btn {
+  all: unset;
+  display: flex;
+  padding: 12px 20px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--Base-100);
+  color: var(--Accent);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px; /* Text/Normal/Semi Bold */
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+.page-references main section.py-5 .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article > button.btn:focus-visible {
+  outline: 2px solid var(--Accent);
+  outline-offset: 2px;
+}
+@media (max-width: 575.98px) {
+  .page-references {
+    /* jen partners sekce, CTA vynecháme */
+    /* Container bez horizontálních paddingů v PARTNERS sekci */
+    /* Zrušit vodorovný gutter gridu v PARTNERS sekci */
+    /* Sloupce bez vnitřního paddingu v PARTNERS sekci */
+    /* Logo box spacing per Figma (0 52px) */
+  }
+  .page-references main section.py-5:not(.contact-action) {
+    display: flex;
+    padding: 40px var(--edge-mobile);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+    align-self: stretch;
+  }
+  .page-references main section.py-5:not(.contact-action) .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .page-references main section.py-5:not(.contact-action) .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 {
+    --bs-gutter-x: 0;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .page-references main section.py-5:not(.contact-action) .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .page-references main section.py-5:not(.contact-action) .container > .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article > div:first-child {
+    padding: 0 52px;
+    height: 160px !important;
+  }
+}
+
+/* ====== PARTNERS – cílené overrides pro stránku Reference ====== */
+.page-references .refs-partners {
+  /* hlavička sekce (PC) */
+  /* karty */
+  /* mobilní jemné úpravy (stejné omezení – jen v Partners na Reference) */
+}
+.page-references .refs-partners > .container > .col-md-7.mx-auto.text-center.mb-4 {
+  margin-top: 64px !important;
+  margin-bottom: 64px !important;
+}
+.page-references .refs-partners > .container > .col-md-7.mx-auto.text-center.mb-4 > h2 {
+  color: var(--Black) !important;
+  text-align: center !important;
+  font-family: "Sora", sans-serif !important;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 52px !important;
+  margin: 0 0 28px !important;
+}
+.page-references .refs-partners > .container > .col-md-7.mx-auto.text-center.mb-4 > p {
+  color: var(--Base-700) !important;
+  text-align: center !important;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+}
+.page-references .refs-partners .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col > article.ref-card {
+  display: flex !important;
+  padding: 24px !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  flex: 1 0 0 !important;
+  align-self: stretch !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--Base-300) !important;
+  background: var(--Base-200) !important;
+  height: 100% !important;
+}
+.page-references .refs-partners .ref-card > .logo-wrap {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  padding: 16px !important;
+  width: 100% !important;
+  min-height: 120px !important;
+}
+.page-references .refs-partners .ref-card > h4.ref-title {
+  color: var(--Black) !important;
+  font-family: "Sora", sans-serif !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  line-height: 28px !important;
+  margin: 0 !important;
+  text-align: left !important; /* PC vlevo */
+}
+.page-references .refs-partners .ref-card > p.ref-desc {
+  color: var(--Base-700) !important;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+@media (max-width: 575.98px) {
+  .page-references .refs-partners {
+    /* tvé mobilní rozestupy kolem titulku */
+  }
+  .page-references .refs-partners > .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .page-references .refs-partners .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 {
+    --bs-gutter-x: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .page-references .refs-partners .row.g-3.row-cols-1.row-cols-sm-2.row-cols-md-3 > .col {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .page-references .refs-partners .ref-card > .logo-wrap {
+    padding: 0 52px !important;
+    height: 160px !important;
+  }
+  .page-references .refs-partners .ref-card > h4.ref-title {
+    margin-top: 12px !important;
+    margin-bottom: 2px !important;
+  }
+}/*# sourceMappingURL=references.css.map */

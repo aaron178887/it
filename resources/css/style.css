@@ -1,0 +1,2411 @@
+@charset "UTF-8";
+/* resources/css/style.scss */
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+/* =======================
+   Variables (SCSS) + CSS Custom Props
+   ======================= */
+/* Precomputed hover/active tones */
+:root {
+  --Base-700: #414651;
+  --Black: #000;
+  --Accent: #F52130;
+  --AccentHover: rgb(246.2, 59.64, 72.84);
+  --AccentActive: rgb(225.4, 30.36, 44.16);
+  --EdgePush: clamp(6px, 2.8vw, 14px);
+}
+
+/* =======================
+   Global styles
+   ======================= */
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+}
+
+html, body {
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-synthesis-weight: none;
+  font-synthesis-style: none;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  background-color: var(--bs-light);
+  font-weight: 500;
+}
+
+h1, h2, h3 {
+  font-family: "Sora", sans-serif;
+}
+
+.font-sora {
+  font-family: "Sora", sans-serif;
+}
+
+/* Helpers / components */
+.bg-cta-grad {
+  background: linear-gradient(to right, #6e2126, #222121, #6e2126);
+}
+
+.grayed-out {
+  filter: grayscale(100%);
+}
+
+.p-5, .p-md-5, .p-lg-5 {
+  padding: 2.5rem !important;
+}
+
+.icon1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+}
+
+.bg-gray {
+  background-color: #e9eaeb;
+}
+
+.btn {
+  font-weight: 600;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.glass {
+  background: url("../images/glass-bg.png");
+  background-size: 100% 100%;
+}
+
+.none {
+  display: none;
+}
+
+/* A11y helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* =======================
+   Buttons (Bootstrap base vars)
+   ======================= */
+.btn-primary {
+  --bs-btn-color:#fff;
+  --bs-btn-bg:#F52130;
+  --bs-btn-border-color:#F52130;
+  --bs-btn-hover-color:#fff;
+  --bs-btn-hover-bg:rgb(246.2, 59.64, 72.84);
+  --bs-btn-hover-border-color:rgb(208.25, 28.05, 40.8);
+  --bs-btn-focus-shadow-rgb:208,28,41;
+  --bs-btn-active-color:#fff;
+  --bs-btn-active-bg:rgb(225.4, 30.36, 44.16);
+  --bs-btn-active-border-color:rgb(208.25, 28.05, 40.8);
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+  --bs-btn-disabled-color:#fff;
+  --bs-btn-disabled-bg:#F52130;
+  --bs-btn-disabled-border-color:#F52130;
+}
+
+/* =======================
+   CTA (sekce + dlaždice značek + tlačítka)
+   ======================= */
+/* ---- Tlačítka ---- */
+/* CTA button (shared with .btn-primary colors) */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  gap: 8px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: #F52130;
+  border: 1px solid #F52130;
+  color: #fff;
+  font-weight: 800;
+  /* bez hover animací – jen změna tónu při :hover/:active */
+  transition: none;
+}
+.btn-cta:hover {
+  background: rgb(246.2, 59.64, 72.84);
+  border-color: rgb(246.2, 59.64, 72.84);
+}
+.btn-cta:active {
+  background: rgb(225.4, 30.36, 44.16);
+  border-color: rgb(225.4, 30.36, 44.16);
+}
+.btn-cta:focus-visible {
+  outline: 2px solid color-mix(in srgb, #F52130 35%, transparent);
+  outline-offset: 2px;
+  box-shadow: none !important;
+}
+
+/* Ghost button pro karty */
+.btn-ghost-accent {
+  display: inline-flex;
+  padding: 12px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: #FFF;
+  color: #F52130;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: none; /* zrušené hover/active animace */
+}
+.btn-ghost-accent:hover {
+  background-color: #fff;
+}
+.btn-ghost-accent:active {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---- Sekce CTA ---- */
+.contact-action {
+  --cta-gap: 10px;
+  margin-top: 3.5rem;
+  /* vnitřní karta s gradientem */
+  /* ---- Dlaždice značek (ikony / obrázky) ----
+     * funguje pro <img> i pro <i class="fa-brands ..."> uvnitř wrapperu .logo-tile
+     * není nutné měnit HTML – níže je i selektor na stávající .d-flex řádek
+  */
+  /* řádek s dlaždicemi (tvé aria-hidden="true" d-flex …) */
+  /* varianta A: máš wrapper .logo-tile (doporučeno) */
+  /* varianta B: přímo obrázek – obalíme vizuálně paddingem a pozadím */
+  /* drobná typografie nad logy */
+}
+.contact-action .bg-cta-grad {
+  border-radius: 16px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+  padding: clamp(28px, 4.2vw, 48px) clamp(18px, 3.6vw, 36px);
+}
+.contact-action .bg-cta-grad h2 {
+  font-family: "Sora", sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+  margin: 0 0 0.25em 0;
+}
+.contact-action .bg-cta-grad p {
+  margin: 0 0 1.25rem 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+.contact-action .bg-cta-grad > .d-flex.justify-content-center.mb-3,
+.contact-action .cta-logos {
+  gap: var(--cta-gap);
+  flex-wrap: wrap;
+}
+.contact-action .logo-tile {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  line-height: 0;
+  /* bez hover efektů */
+  transition: none;
+  /* FontAwesome ikony uvnitř */
+}
+.contact-action .logo-tile:hover, .contact-action .logo-tile:active {
+  transform: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+.contact-action .logo-tile i {
+  font-size: 25.76px;
+  opacity: 0.95;
+}
+.contact-action .bg-cta-grad > .d-flex.justify-content-center.mb-3 > img,
+.contact-action .cta-logos > img,
+.contact-action img.cta-logo {
+  display: inline-block;
+  width: 56px;
+  height: 56px; /* sjednocený box */
+  padding: 10px; /* „okraj“ kolem loga */
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+  /* bez hover efektů */
+  transition: none;
+}
+.contact-action .cta-eyebrow, .contact-action .opacity-75.mb-2 {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+}
+
+/* ---- Responzivní doladění ---- */
+@media (max-width: 992px) {
+  .contact-action {
+    margin-top: 2.5rem;
+  }
+}
+@media (max-width: 576px) {
+  .contact-action {
+    margin-top: 1.25rem;
+    /* menší dlaždice na mobilu */
+  }
+  .contact-action .bg-cta-grad {
+    border-radius: 12px;
+  }
+  .contact-action .logo-tile {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .contact-action .logo-tile i {
+    font-size: 23.04px;
+  }
+  .contact-action .bg-cta-grad > .d-flex.justify-content-center.mb-3 > img,
+  .contact-action .cta-logos > img,
+  .contact-action img.cta-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    padding: 8px;
+  }
+  .contact-action .btn-cta {
+    padding: 12px 18px;
+    border-radius: 9px;
+  }
+}
+/* =======================
+   HERO
+   ======================= */
+.hero {
+  display: flex;
+  height: 700px;
+  padding: 64px 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px !important;
+  align-self: stretch;
+  position: relative;
+  background: none !important;
+  overflow: hidden;
+}
+.hero .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 0;
+  /* posun malinko doprava */
+  -o-object-position: 60% center !important;
+     object-position: 60% center !important;
+}
+.hero > .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  /* === Rozestupy mezi h1 → p → tlačítko (PC i mobil, bez změny výšky) === */
+  /* potlač marginy utilit (např. .mb-4 z Bootstrapu) */
+}
+.hero > .overlay .container > div {
+  display: grid;
+  justify-items: center;
+  row-gap: clamp(16px, 2.2vw, 28px);
+  text-align: center;
+}
+.hero > .overlay h1, .hero > .overlay p, .hero > .overlay .btn {
+  margin: 0 !important;
+}
+.hero .container {
+  padding-top: 3rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero {
+    background: url("../images/home_hero.jpg") no-repeat center/cover !important;
+  }
+  .hero .hero-bg {
+    display: none;
+  }
+}
+
+/* =======================
+   HERO – Mobile (≤576px)
+   ======================= */
+@media (max-width: 576px) {
+  .hero {
+    display: flex;
+    height: 600px;
+    padding: 64px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+    align-self: stretch;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    z-index: 0;
+  }
+  .hero > .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+  .hero > .overlay .container {
+    position: relative;
+    z-index: 2;
+    color: var(--White, #FFF);
+    text-align: center;
+    padding: 0 8px;
+    /* Badge (skrytý) */
+    /* mobil: držíme typografii, ale rozestupy řeší grid výše ⇒ bez marginů */
+  }
+  .hero > .overlay .container .none {
+    display: none !important;
+  }
+  .hero > .overlay .container h1 {
+    font-family: "Sora", sans-serif;
+    font-size: 40px !important;
+    font-weight: 700 !important;
+    line-height: 48px !important;
+    margin: 0 !important;
+  }
+  .hero > .overlay .container p {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 !important;
+  }
+  .hero > .overlay .container .btn {
+    font-size: 18px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 8px;
+    margin: 0 !important;
+  }
+}
+/* --- COMPANIES (We supply solutions…) --- */
+.refs {
+  /* Nadpis */
+  /* Seznam log (desktop baseline) */
+}
+.refs > .container > h2 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+}
+.refs ul {
+  --logo-h: 30px; /* výška loga na desktopu */
+  --gap-x: 2rem; /* vodorovná mezera */
+  --gap-y: 1rem; /* svislá mezera  */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-y) var(--gap-x);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.refs li {
+  line-height: 0;
+}
+.refs img {
+  display: block;
+  height: var(--logo-h);
+  width: auto;
+  max-width: 180px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: opacity 0.2s ease, transform 0.15s ease, filter 0.2s ease;
+  will-change: transform, opacity;
+}
+.refs img:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  filter: grayscale(0%);
+}
+
+/* Tablet (≤ 992px) */
+@media (max-width: 992px) {
+  .refs > .container > h2 {
+    font-size: 13px;
+    margin-bottom: 1rem;
+  }
+  .refs ul {
+    --logo-h: 26px;
+    --gap-x: 1.25rem;
+    --gap-y: .875rem;
+  }
+  .refs img {
+    max-width: 150px;
+  }
+}
+/* Mobile (≤ 576px) */
+@media (max-width: 576px) {
+  .refs > .container > h2 {
+    font-size: 12px;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .refs ul {
+    --logo-h: 26px;
+    --gap-x: 1.1rem;
+    --gap-y: .8rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .refs li {
+    flex: 0 1 auto;
+  }
+  .refs img {
+    max-width: 160px;
+    opacity: 0.98;
+  }
+}
+/* Velké displeje (≥ 1400px) */
+@media (min-width: 1400px) {
+  .refs ul {
+    --logo-h: 32px;
+    --gap-x: 2.25rem;
+  }
+  .refs img {
+    max-width: 200px;
+  }
+}
+/* =======================
+   About
+   ======================= */
+.about {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  /* Přečíst více – neutrální odkaz s jemnou animací */
+}
+.about .about-subtitle {
+  color: var(--Accent);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.about .about-title {
+  color: var(--Black);
+  font-family: "Sora", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 52px;
+  margin-bottom: 16px;
+}
+.about .about-paragraph {
+  color: var(--Base-700);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.about .readmore {
+  --c: var(--Base-700);
+  color: var(--c);
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  position: relative;
+  /* „rostoucí“ podtržení */
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.25s ease, color 0.2s ease;
+}
+.about .readmore::after {
+  content: "→";
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+.about .readmore:hover, .about .readmore:focus-visible {
+  color: color-mix(in srgb, var(--Black) 92%, white);
+  background-size: 100% 2px;
+}
+.about .readmore:hover::after, .about .readmore:focus-visible::after {
+  transform: translateX(3px);
+}
+.about .readmore:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--Black) 30%, transparent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.about img {
+  border-radius: 12px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+/* Mobile (≤576px) — sjednocení */
+@media (max-width: 576px) {
+  .about .about-subtitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .about .about-title {
+    font-size: 32px;
+    line-height: 36px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    margin: 0 0 19px;
+  }
+  .about .about-paragraph {
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    max-width: 100%;
+    text-align: left; /* není nalepený na střed */
+  }
+  .about .readmore {
+    font-weight: 800;
+    /* větší klikací plocha na mobilu */
+    padding: 2px 0;
+    background-size: 0 2px; /* zachovat animaci */
+  }
+  .about .container {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  .about .container .gap-5 {
+    gap: 2rem !important;
+  }
+}
+/* Respektuj snížený pohyb */
+@media (prefers-reduced-motion: reduce) {
+  .about .readmore {
+    transition: none;
+  }
+  .about .readmore::after {
+    transition: none;
+  }
+}
+/* =======================
+   Section headings – unified
+   ======================= */
+.services .section-title,
+.aboutus .text-center > h2,
+.why .text-center > h2 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0 0 28px;
+}
+
+.services .section-desc,
+.aboutus .text-center > h2 + p,
+.why .text-center > h2 + p {
+  color: var(--Base-700);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* =======================
+   Services
+   ======================= */
+.services {
+  padding-top: 128px;
+  padding-bottom: 64px;
+}
+.services .container.d-flex {
+  align-items: center;
+  gap: 50px !important;
+}
+.services .col-md-7.mx-auto.text-center {
+  margin-bottom: 1.5rem;
+}
+
+.service-card {
+  background-color: #e9eaeb;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  /* jednotná velikost obrázků v kartách – stejně jako 2. obrázek (588×261 ≈ 9:4) */
+}
+.service-card__title {
+  color: var(--Black);
+  font-family: "Sora", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  margin: 0;
+}
+@media (max-width: 575.98px) {
+  .service-card__title {
+    font-size: 28px;
+  }
+}
+.service-card__desc {
+  color: var(--Base-700);
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0;
+}
+.service-card__desc + .service-card__desc {
+  margin-top: 4px;
+}
+.service-card__image {
+  width: 100%;
+  aspect-ratio: 9/4;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top center;
+     object-position: top center;
+  margin-top: 8px;
+  border-radius: 8px;
+  display: block;
+}
+.service-card .btn-ghost-accent {
+  align-self: flex-start;
+}
+
+/* =======================
+   Why
+   ======================= */
+.why {
+  padding-top: 128px;
+  padding-bottom: 64px;
+}
+.why .container.d-flex {
+  gap: 50px !important;
+  flex-direction: column;
+}
+.why .why__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.why .feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  flex: 1 0 0;
+  padding: 32px;
+  border-radius: 8px;
+  background: var(--White, #FFF);
+  border: none;
+}
+.why .why-iconbox {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--Base-200, #E9EAEB);
+}
+.why .why-icon {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  display: block;
+}
+.why h2.section-title {
+  color: var(--Black);
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0 0 16px;
+  text-align: center;
+}
+.why p.section-desc {
+  color: var(--Base-700);
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+}
+.why h3 {
+  color: var(--Black);
+  font-family: "Sora", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  margin: 2px 0 8px;
+}
+
+.drives {
+  margin-top: 56px;
+  padding: 96px 0 80px;
+  /* LEVÝ sloupec: headline + boxy */
+  /* --- mezera mezi kartami (Figma: 8px) --- */
+  /* Boxy (Trusted Partners / Innovation First) */
+  /* PRAVÝ sloupec: velká fotka + citace */
+}
+.drives .drives__container {
+  display: flex;
+  align-items: center;
+  gap: 50px !important; /* mezera: text × fotka */
+  align-self: stretch;
+}
+.drives .drives__content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  /* žádný gap – mezeru mezi kartami řešíme sourozencem níže */
+}
+.drives .drives__header {
+  margin-bottom: 64px;
+}
+.drives .drives-title {
+  color: var(--Black, #000);
+  text-align: left;
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0 0 28px; /* sjednoceno se sekcemi nad tím (Services/Why) */
+}
+.drives .drives-subtitle {
+  color: var(--Base-700, #414651);
+  text-align: left;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+.drives .drives__content .drives-item + .drives-item {
+  margin-top: 8px;
+}
+.drives .drives-item {
+  display: flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #FFF;
+  border: 0;
+  /* Šedý pruh s ikonkami / logy */
+}
+.drives .drives-item h3 {
+  color: var(--Black, #000);
+  font-family: "Sora", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  margin: 0;
+}
+.drives .drives-item p {
+  color: var(--Base-700, #414651);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+.drives .drives-item .drives-icons {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--Base-200, #E9EAEB);
+  margin-top: 12px;
+}
+.drives .drives-item .drives-icons .icon1 {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: #FFF;
+  line-height: 0;
+  /* jednotná velikost pro SVG/IMG loga */
+  /* podpora pro Font Awesome „brands“ ikony (stejná optická velikost) */
+}
+.drives .drives-item .drives-icons .icon1 svg, .drives .drives-item .drives-icons .icon1 img {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  display: block;
+}
+.drives .drives-item .drives-icons .icon1 i {
+  display: block;
+  line-height: 1;
+  font-size: 28px; /* opticky ≈ 32px obrázek uvnitř dlaždice */
+  color: #111; /* případně přepiš na brand barvu */
+}
+.drives .testimonial-box {
+  flex: 1 1 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 640px;
+  padding: 20px 22px 26px;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.drives .testimonial-box.bg-about {
+  background-image: url("../images/home/about.jpg");
+}
+.drives .testimonial-box .quote-box {
+  width: 100%;
+  max-width: 560px;
+  padding: 24px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+.drives .testimonial-box .quote-text {
+  color: var(--Base-700);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 8px;
+}
+.drives .testimonial-box .quote-author {
+  color: var(--Black);
+  font: 700 18px "Sora", sans-serif;
+  margin: 0;
+}
+
+/* --- Tablet --- */
+@media (max-width: 992px) {
+  .drives {
+    padding: 80px 0 64px;
+    /* stejné jako ostatní sekce */
+  }
+  .drives .drives-title {
+    margin-bottom: 20px;
+  }
+  .drives .drives__container {
+    gap: 40px;
+  }
+  .drives .testimonial-box {
+    height: 520px;
+  }
+}
+/* --- Phablet --- */
+@media (max-width: 768px) {
+  .drives .drives-title {
+    margin-bottom: 16px;
+  } /* stejné jako ostatní sekce */
+}
+/* --- Mobile --- */
+@media (max-width: 576px) {
+  .drives {
+    /* zúžené boční odsazení jako u WHY/SERVICES → boxy širší */
+    padding: 85px 8px;
+    padding-bottom: 2rem;
+    margin-top: 0;
+    /* zruš vnitřní padding bootstrap .container, ať nezužuje obsah */
+    /* obsah sekce */
+    /* HLAVIČKA – na střed + mezera nad první kartou */
+    /* Boxy – mobilně kompaktní a na plnou šířku */
+  }
+  .drives .container,
+  .drives .drives__container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .drives .drives__container {
+    flex-direction: column;
+    gap: 30px !important; /* mezera: blok text+boxy × obrázek */
+    align-items: stretch;
+    display: flex;
+  }
+  .drives .drives__content {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px !important; /* žádný gap mezi položkami – drží to margin-top:8px */
+  }
+  .drives .drives__header {
+    margin-bottom: 30px;
+  }
+  .drives .drives-title {
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    margin: 0 0 19px;
+  }
+  .drives .drives-subtitle {
+    color: var(--Base-700, #414651);
+    text-align: center;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .drives .testimonial-box {
+    order: 2;
+    height: auto;
+    min-height: clamp(320px, 52vh, 520px);
+    padding: 16px;
+    width: 100%;
+  }
+  .drives .testimonial-box .quote-box {
+    padding: 16px;
+    max-width: 100%;
+  }
+  .drives .testimonial-box .quote-text,
+  .drives .testimonial-box .quote-author {
+    font-size: 16px;
+  }
+  .drives .drives-item {
+    padding: 16px;
+    border-radius: 10px;
+    align-self: stretch;
+    width: 100%;
+  }
+  .drives .drives-item h3 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .drives .drives-item p {
+    font-size: 16px;
+  }
+  .drives .drives-item .drives-icons {
+    padding: 6px;
+    gap: 6px;
+  }
+  .drives .drives-item .drives-icons .icon1 {
+    padding: 10px;
+    /* mobilní optická velikost FA ikon */
+  }
+  .drives .drives-item .drives-icons .icon1 svg, .drives .drives-item .drives-icons .icon1 img {
+    width: 28px;
+    height: 28px;
+  }
+  .drives .drives-item .drives-icons .icon1 i {
+    font-size: 26px;
+  }
+}
+/* Screen-reader utility (pokud už máš globálně, tenhle blok klidně vynech) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============ FOOTER ============ */
+.site-footer {
+  --footer-bg: #000;
+  --footer-fg: #fff;
+  --muted: rgba(255,255,255,.8);
+  width: 100%;
+  color: var(--footer-fg);
+  background: var(--footer-bg);
+  margin-top: 6rem;
+  padding: 4rem 0 2rem;
+  /* Socials (Font Awesome brands) */
+}
+.site-footer .footer-logo {
+  max-height: 3rem;
+  height: auto;
+}
+.site-footer .footer-text {
+  color: var(--muted);
+  line-height: 1.6;
+}
+.site-footer .footer-heading {
+  margin: 0 0 0.75rem 0;
+  padding-bottom: 0.5rem;
+  font: 700 1.125rem "Sora", system-ui, sans-serif;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.site-footer .footer-link {
+  color: var(--footer-fg);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+.site-footer .footer-link:hover {
+  opacity: 1;
+  color: var(--Accent, #F52130);
+  transform: translateX(2px);
+}
+.site-footer .footer-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--Accent, #F52130) 40%, transparent);
+  outline-offset: 2px;
+}
+.site-footer .footer-social {
+  --icon-box: 40px; /* velikost „čtverce“ ikony */
+  --icon-size: 20px;
+}
+.site-footer .footer-social .footer-social-link {
+  width: var(--icon-box);
+  height: var(--icon-box);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  opacity: 0.95;
+  transition: transform 0.15s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.site-footer .footer-social .footer-social-link i {
+  font-size: var(--icon-size);
+}
+.site-footer .footer-social .footer-social-link:hover {
+  transform: translateY(-2px);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--Accent, #F52130);
+}
+.site-footer .footer-social .footer-social-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--Accent, #F52130) 40%, transparent);
+  outline-offset: 2px;
+}
+.site-footer .footer-separator {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 1.5rem 0;
+}
+.site-footer .footer-copy {
+  opacity: 0.6;
+  font-weight: 500;
+}
+@media (max-width: 575.98px) {
+  .site-footer {
+    margin-top: 3rem;
+  }
+}
+
+/* Responsive sizes pro social ikony + mobilní spacing pod CTA */
+@media (max-width: 576px) {
+  .site-footer .footer-social {
+    --icon-box: 36px;
+    --icon-size: 18px;
+    margin-top: 3rem;
+  }
+  .site-footer .col-lg-4.pe-lg-5 {
+    padding-bottom: 1rem;
+  }
+  /* Větší mezera mezi CTA tlačítkem a horizontálním oddělovačem */
+  .site-footer .btn-cta {
+    margin-bottom: 12px;
+  }
+  .site-footer .footer-separator {
+    margin-top: clamp(24px, 6vw, 36px);
+  }
+}
+/* =======================
+   Media helpers
+   ======================= */
+@media (min-width: 576px) {
+  .service-card {
+    padding: 28px;
+    gap: 14px;
+  }
+}
+@media (min-width: 992px) {
+  .service-card {
+    padding: 32px;
+    gap: 16px;
+  }
+}
+@media (max-width: 992px) {
+  .p-md-5, .p-lg-5 {
+    padding: auto;
+  }
+  .site-header .container-xxl {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .services {
+    padding-top: 96px;
+    padding-bottom: 56px;
+  }
+  .services .container.d-flex {
+    gap: 48px !important;
+  }
+  .why {
+    padding: 56px;
+    gap: 48px;
+  }
+  .why__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .why__item {
+    padding: 28px;
+  }
+  .services .section-title, .aboutus .text-center > h2, .why .text-center > h2 {
+    font-size: 40px;
+    line-height: 44px;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+  .services {
+    padding-top: 3em;
+    padding-bottom: 48px;
+  }
+  .services .container.d-flex {
+    gap: 25px !important;
+  }
+  .why {
+    padding: 32px;
+    padding-top: 3rem;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 32px;
+  }
+  .why__item {
+    padding: 24px;
+  }
+  .services .section-title, .aboutus .text-center > h2, .why .text-center > h2 {
+    font-size: 32px;
+    line-height: 36px;
+    margin-bottom: 16px;
+  }
+}
+/* ==========================
+   INFRASTRUCTURE SECTION
+   ========================== */
+.infrastructure {
+  display: flex;
+  padding: 80px 64px 64px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px !important;
+  align-self: stretch;
+}
+.infrastructure .section-title {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 52px;
+  margin: 0 0 28px;
+}
+.infrastructure .section-desc {
+  color: var(--Base-700);
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 1.5em;
+}
+.infrastructure .row.bg-secondary {
+  border-radius: 20px;
+  background: var(--Base-200, #E9EAEB) !important;
+  display: flex;
+  padding: 16px !important;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  margin: 0;
+  gap: 16px;
+  box-sizing: border-box;
+}
+.infrastructure .row.bg-secondary .col {
+  box-sizing: border-box;
+  width: 49.2%;
+  margin: 0;
+  padding: 0;
+}
+.infrastructure .bg-white.h-100 {
+  display: flex;
+  padding: 32px;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+  border-radius: 8px;
+  background: var(--White, #FFF) !important;
+}
+.infrastructure .bg-white.h-100 h3 {
+  align-self: stretch;
+  color: var(--Black);
+  font-family: "Sora", sans-serif;
+  font-size: 32px;
+  font-weight: 700 !important;
+  line-height: 36px;
+  margin: 22px 0 12px 0;
+}
+.infrastructure .bg-white.h-100 ul.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+}
+.infrastructure .bg-white.h-100 ul.list-unstyled li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eceff1;
+  color: var(--Base-700);
+  font-family: "Plus Jakarta Sans";
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left; /* text vlevo */
+}
+.infrastructure .bg-white.h-100 ul.list-unstyled li:last-child {
+  border-bottom: 0;
+}
+.infrastructure .bg-white.h-100 ul.list-unstyled li .badge.bg-light {
+  display: inline-flex;
+  padding: 4px 12px;
+  justify-content: flex-start; /* vlevo */
+  align-items: center;
+  gap: 8px;
+  border-radius: 50px !important;
+  background: var(--Base-100, #F5F5F5) !important;
+  color: var(--Base-500, #717680);
+  font-family: "Plus Jakarta Sans";
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left; /* text vlevo */
+}
+.infrastructure .bg-white.h-100 ul.list-unstyled li .badge.bg-light img,
+.infrastructure .bg-white.h-100 ul.list-unstyled li .badge.bg-light svg {
+  width: 16px;
+  height: 16px;
+  aspect-ratio: 1/1;
+  display: inline-block;
+}
+.infrastructure .infra-icon {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--Base-200, #E9EAEB);
+  margin-bottom: 12px;
+  line-height: 0;
+}
+.infrastructure .infra-icon svg {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  display: block;
+}
+
+/* ===== Infrastructure — Tablet (≤992px) ===== */
+@media (max-width: 992px) {
+  .infrastructure {
+    padding: 96px 10px 48px;
+    gap: 40px;
+  }
+  .infrastructure .mb-3 {
+    margin-bottom: 0 !important;
+  }
+  .infrastructure .section-title {
+    line-height: 44px !important;
+    margin-bottom: 20px !important;
+  }
+  .infrastructure .section-desc {
+    font-size: 16px;
+  }
+  .infrastructure .row.bg-secondary {
+    padding: 12px;
+    gap: 12px;
+  }
+  .infrastructure .bg-white.h-100 {
+    padding: 24px;
+    gap: 20px;
+  }
+}
+/* ===== Infrastructure — Mobile (≤576px) ===== */
+@media (max-width: 576px) {
+  .infrastructure {
+    /* hlavička sekce podle zadání */
+    display: flex;
+    padding: 40px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px !important;
+    align-self: stretch;
+    /* Nadpis */
+    /* Odstavec */
+    /* wrapper s kartami */
+    /* karta */
+    /* ===== Rozšíření do šířky na mobilech (bez mazání původních pravidel) ===== */
+    /* menší boční okraje celé sekce */
+    padding-left: 8px;
+    padding-right: 8px;
+    /* kontejner bez postranních paddingů pro maximum šířky obsahu */
+    /* row wrapper s menším vnitřním paddingem → karty opticky širší */
+    /* karty s mírně větším vnitřním paddingem (volitelné) */
+  }
+  .infrastructure .container.d-flex {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .infrastructure .section-title {
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    margin: 0;
+  }
+  .infrastructure .section-desc {
+    color: var(--Base-700, #414651);
+    text-align: center;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .infrastructure .row.bg-secondary {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px !important;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 20px;
+    background: var(--Base-200, #E9EAEB) !important;
+  }
+  .infrastructure .row.bg-secondary .col {
+    width: 100%;
+  }
+  .infrastructure .bg-white.h-100 {
+    display: flex;
+    padding: 18px !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--White, #FFF) !important;
+  }
+  .infrastructure .bg-white.h-100 h3 {
+    font-size: 24px;
+    line-height: 28px;
+    margin: 12px 0 10px;
+    text-align: left;
+  }
+  .infrastructure .bg-white.h-100 ul.list-unstyled {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .infrastructure .bg-white.h-100 ul.list-unstyled li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+    color: var(--Base-700);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .infrastructure .bg-white.h-100 ul.list-unstyled li:last-child {
+    border-bottom: 0;
+  }
+  .infrastructure .bg-white.h-100 ul.list-unstyled li .badge.bg-light {
+    display: inline-flex;
+    padding: 3px 10px;
+    gap: 6px;
+    border-radius: 50px !important;
+    background: var(--Base-100, #F5F5F5) !important;
+    color: var(--Base-500, #717680);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .infrastructure .bg-white.h-100 ul.list-unstyled li .badge.bg-light svg, .infrastructure .bg-white.h-100 ul.list-unstyled li .badge.bg-light img {
+    width: 14px;
+    height: 14px;
+  }
+  .infrastructure .infra-icon {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+  .infrastructure .infra-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .infrastructure .container,
+  .infrastructure .container.d-flex {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .infrastructure .row.bg-secondary {
+    padding: 8px !important; /* bylo 12px – zúží vnitřní okraje */
+    border-radius: 14px; /* jemně menší radius – širší dojem */
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .infrastructure .bg-white.h-100 {
+    padding: 20px !important; /* bylo 18px */
+  }
+}
+/* =======================
+   CTA section spacing
+   ======================= */
+.contact-action {
+  margin-top: 3.9rem;
+}
+@media (max-width: 576px) {
+  .contact-action {
+    margin-top: 1rem;
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+.contact-action p.opacity-75.mb-4 {
+  font-size: 18px !important;
+  color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+}
+
+.site-header {
+  /* laditelné proměnné; větší jistota okrajů na mobilu */
+  --header-inset: 8px;
+  --header-top: 8px;
+  position: relative;
+  z-index: 1000;
+  /* ===== Desktop „karta“ nad hero ===== */
+  /* ===== Nav list (desktop baseline) ===== */
+  /* ===== Hamburger (hidden on desktop) ===== */
+  /* ===== Drobný dropdown (desktop) ===== */
+  /* ===== Desktop mega menu ===== */
+  /* ==========================================
+     TABLET + MOBILE (≤992px) — společné chování
+     ========================================== */
+  /* ===== Tablet (577–992px): panel centrovaný na okno ===== */
+  /* ==========================================
+     MOBILE (≤576px): fixní karta + panel stejně široký
+     … lehce větší než default (logo/hamburger 40, vyšší padding)
+     ========================================== */
+}
+.site-header .navbar-shell {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1320px, 100% - 48px);
+  height: 72px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+.site-header .navbar-inner {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.site-header .brand-logo {
+  width: 52px;
+  height: 52px;
+  display: block;
+  aspect-ratio: 1/1;
+}
+.site-header .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-grow: 1;
+  justify-content: center;
+}
+.site-header .nav-list .nav-item {
+  position: relative;
+}
+.site-header .nav-list .nav-link {
+  color: #000;
+  font: 500 16px/1 "Plus Jakarta Sans", system-ui, sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.site-header .nav-list .nav-link:hover {
+  color: #F52130;
+}
+.site-header .nav-list .nav-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, #F52130 40%, transparent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+.site-header .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.site-header .hamburger {
+  display: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  width: 24px;
+  height: 24px;
+}
+.site-header .hamburger .ico-menu {
+  display: block;
+}
+.site-header .hamburger .ico-close {
+  display: none;
+}
+.site-header .hamburger[aria-expanded=true] .ico-menu {
+  display: none;
+}
+.site-header .hamburger[aria-expanded=true] .ico-close {
+  display: block;
+}
+.site-header .nav-item.dropdown {
+  position: relative;
+}
+.site-header .nav-item.dropdown .dropdown-menu {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 1000;
+}
+.site-header .nav-item.dropdown .dropdown-menu li a {
+  display: block;
+  padding: 8px 16px;
+  color: #000;
+  font: 500 15px/1.4 "Plus Jakarta Sans", sans-serif;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.site-header .nav-item.dropdown .dropdown-menu li a:hover {
+  background: #f5f5f5;
+  color: #F52130;
+}
+.site-header .nav-item.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+@media (min-width: 992px) {
+  .site-header .nav-list {
+    gap: 36px;
+  }
+  .site-header .nav-list .nav-link,
+  .site-header .nav-item.mega .mega-trigger {
+    font-size: 17px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    padding-block: 10px;
+  }
+  .site-header .nav-actions .btn-cta {
+    font-size: 16px;
+    padding: 12px 22px;
+    border-radius: 10px;
+    line-height: 1.2;
+    font-weight: 800;
+  }
+  .site-header .nav-item.mega {
+    position: relative;
+  }
+  .site-header .nav-item.mega::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 16px;
+  }
+  .site-header .nav-item.mega .mega-trigger {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #000;
+    font: 500 17px/1.2 "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+  .site-header .nav-item.mega .mega-trigger .caret {
+    transition: transform 0.18s ease;
+  }
+  .site-header .nav-item.mega .mega-trigger:hover {
+    color: #F52130;
+  }
+  .site-header .nav-item.mega .mega-trigger:focus-visible {
+    outline: 2px solid color-mix(in srgb, #F52130 40%, transparent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  .site-header .nav-item.mega .mega-panel {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 12px);
+    transform: translateX(-50%) translateY(6px);
+    width: min(880px, 100vw - 48px);
+    padding: 22px 24px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e9eaeb;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 6px 18px rgba(0, 0, 0, 0.06);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    z-index: 1100;
+  }
+  .site-header .nav-item.mega .mega-panel::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-left: 1px solid #e9eaeb;
+    border-top: 1px solid #e9eaeb;
+  }
+  .site-header .nav-item.mega .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px 28px;
+  }
+  .site-header .nav-item.mega .mega-col {
+    padding: 4px 6px;
+  }
+  .site-header .nav-item.mega .mega-title {
+    color: var(--Base-700);
+    font: 700 12px/1 "Plus Jakarta Sans", system-ui, sans-serif;
+    letter-spacing: 0.02em;
+    opacity: 0.9;
+    margin: 4px 0 10px;
+  }
+  .site-header .nav-item.mega .mega-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .site-header .nav-item.mega .mega-list .mega-item {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    align-items: center;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: #111827;
+    text-decoration: none;
+    font: 600 15px/1.25 "Plus Jakarta Sans", sans-serif;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .site-header .nav-item.mega .mega-list .mega-item .ico {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    color: #616977;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: content-box;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .site-header .nav-item.mega .mega-list .mega-item:hover {
+    background: #f6f7f9;
+    color: var(--Accent);
+    transform: translateX(1px);
+  }
+  .site-header .nav-item.mega .mega-list .mega-item:hover .ico {
+    color: var(--Accent);
+    background: color-mix(in srgb, var(--Accent) 12%, white);
+  }
+  .site-header .nav-item.mega .mega-list .mega-item:focus-visible {
+    outline: 2px solid color-mix(in srgb, #F52130 35%, transparent);
+    outline-offset: 2px;
+  }
+  .site-header .nav-item.mega:hover .mega-panel, .site-header .nav-item.mega:focus-within .mega-panel {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .site-header .nav-item.mega:hover .mega-trigger .caret, .site-header .nav-item.mega:focus-within .mega-trigger .caret {
+    transform: rotate(180deg);
+  }
+  .site-header .nav-item.mega:not(:hover):not(:focus-within) .mega-panel {
+    transition-delay: 0.12s;
+  }
+}
+@media (max-width: 992px) {
+  .site-header {
+    /* větší tap target na dotykových zařízeních */
+    /* Panel mobilního menu — základ */
+  }
+  .site-header .nav-list, .site-header .nav-actions {
+    display: none !important;
+  }
+  .site-header .hamburger {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 8px;
+  }
+  .site-header .hamburger:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--Accent) 40%, transparent);
+    outline-offset: 2px;
+  }
+  .site-header .mobile-menu {
+    position: fixed;
+    top: var(--menu-top, 80px); /* JS doplní přes getBoundingClientRect().bottom */
+    padding: 16px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.14), 0 6px 18px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    z-index: 1200;
+    /* výška vs. viewport */
+    max-height: calc(100dvh - var(--menu-top, 80px) - max(8px, env(safe-area-inset-bottom)));
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px) scale(0.98);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .site-header .mobile-menu.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .site-header .mobile-menu .mm-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: stretch;
+  }
+  .site-header .mobile-menu .mm-link {
+    font: 700 16px/24px "Sora", system-ui, sans-serif;
+    color: #000;
+    text-decoration: none;
+    padding: 8px 6px;
+    border-radius: 8px;
+  }
+  .site-header .mobile-menu .mm-link:active {
+    background: #f6f7f9;
+  }
+  .site-header .mobile-menu .mm-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--Accent) 35%, transparent);
+    outline-offset: 2px;
+  }
+  .site-header .mobile-menu .mm-accordion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+    background: transparent;
+    border: 0;
+    padding: 8px 6px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  .site-header .mobile-menu .mm-accordion span {
+    font: 700 16px/24px "Sora", system-ui, sans-serif;
+    color: #000;
+    text-align: left;
+  }
+  .site-header .mobile-menu .mm-accordion .mm-caret {
+    transition: transform 0.2s ease;
+  }
+  .site-header .mobile-menu .mm-accordion[aria-expanded=true] .mm-caret {
+    transform: rotate(180deg);
+  }
+  .site-header .mobile-menu .mm-accordion:active {
+    background: #f6f7f9;
+  }
+  .site-header .mobile-menu .mm-accordion:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--Accent) 35%, transparent);
+    outline-offset: 2px;
+  }
+  .site-header .mobile-menu .mm-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-self: stretch;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 6px;
+    transition: max-height 0.28s ease, opacity 0.28s ease, padding 0.28s ease;
+  }
+  .site-header .mobile-menu .mm-panel.is-open {
+    max-height: 520px;
+    opacity: 1;
+    padding: 8px 6px 2px;
+  }
+  .site-header .mobile-menu .mm-sub {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    align-items: center;
+    -moz-column-gap: 10px;
+         column-gap: 10px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    background: #f5f5f5;
+    color: #000;
+    font: 600 16px/1.25 "Plus Jakarta Sans", sans-serif;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .site-header .mobile-menu .mm-sub .ico {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    color: #616977;
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 6px;
+    box-sizing: content-box;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .site-header .mobile-menu .mm-sub:hover {
+    background: #f6f7f9;
+    color: var(--Accent);
+    transform: translateX(1px);
+  }
+  .site-header .mobile-menu .mm-sub:hover .ico {
+    color: var(--Accent);
+    background: color-mix(in srgb, var(--Accent) 12%, white);
+  }
+  .site-header .mobile-menu .mm-sub:focus-visible {
+    outline: 2px solid color-mix(in srgb, #F52130 35%, transparent);
+    outline-offset: 2px;
+  }
+  .site-header .mobile-menu .mm-cta {
+    align-self: stretch;
+    margin-top: 6px;
+  }
+}
+@media (min-width: 577px) and (max-width: 992px) {
+  .site-header .mobile-menu {
+    left: 50%;
+    width: min(1320px, 100% - 48px);
+    transform: translateX(-50%) translateY(-10px) scale(0.98);
+  }
+  .site-header .mobile-menu.is-open {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+@media (max-width: 576px) {
+  .site-header {
+    /* fixní shell přes celou šířku, karta uvnitř = 100% - 2× inset */
+    /* ↑ bylo 35×35 */
+    /* panel — stejné postranní insets jako karta */
+    /* kotvy vs. fixní (o něco vyšší) header */
+  }
+  .site-header .navbar-shell {
+    position: fixed;
+    top: max(var(--header-top, 12px), env(safe-area-inset-top));
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    z-index: 1300; /* nad scrimem */
+  }
+  .site-header .navbar-inner {
+    width: calc(100% - var(--header-inset, 8px) * 2);
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 10px; /* ↑ bylo 7px */
+    padding-bottom: 10px; /* ↑ bylo 7px */
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    gap: 10px; /* zachováno */
+  }
+  .site-header .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .site-header .nav-list, .site-header .nav-actions, .site-header .nav-item.mega {
+    display: none !important;
+  }
+  .site-header .hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px; /* ↑ bylo 36×36 */
+    padding: 0;
+    border: 0;
+    background: transparent;
+    border-radius: 9px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .site-header .hamburger .ico-menu {
+    display: block;
+  }
+  .site-header .hamburger .ico-close {
+    display: none;
+  }
+  .site-header .hamburger[aria-expanded=true] .ico-menu {
+    display: none;
+  }
+  .site-header .hamburger[aria-expanded=true] .ico-close {
+    display: block;
+  }
+  .site-header .mobile-menu {
+    left: var(--header-inset, 12px);
+    right: var(--header-inset, 12px);
+    width: auto;
+    transform: translateY(-10px) scale(0.98);
+  }
+  .site-header .mobile-menu.is-open {
+    transform: translateY(0) scale(1);
+  }
+  .site-header html {
+    scroll-padding-top: calc(max(var(--header-top, 12px), env(safe-area-inset-top)) + 64px + 12px); /* ~40px logo + 20px padding + mezera */
+  }
+  .site-header body {
+    padding-top: 0 !important;
+  }
+  .site-header .hero {
+    margin-top: 0 !important;
+  }
+}
+
+/* ===== Scrim za mobilním panelem (≤768px) ===== */
+@media (max-width: 768px) {
+  body.mobile-open::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.36);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    z-index: 1100; /* pod .mobile-menu (1200), nad obsahem */
+    pointer-events: auto;
+  }
+}
+/* ===== Akordeon (plynulá výška) ===== */
+.mobile-menu .mm-panel {
+  transition: max-height 0.28s ease, opacity 0.24s ease, padding 0.24s ease;
+}
+
+@media (max-width: 576px) {
+  .services {
+    /* rámování sekce (shodné s WHY) – užší boční okraje */
+    padding: 48px 8px 32px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: stretch;
+    /* HLAVIČKA SEKCE — NA STŘED */
+    /* wrapper s kartami – bez vnitřních postranních okrajů, ať karty jdou víc do šířky */
+    /* karty služeb */
+    /* jemnější spacing u bootstrap řádku na mobilu – menší gutters + bez negativních okrajů */
+  }
+  .services .col-md-7 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center !important;
+  }
+  .services .section-title {
+    color: var(--Black);
+    text-align: center !important;
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    margin: 0 0 12px;
+  }
+  .services .section-desc {
+    color: var(--Base-700);
+    text-align: center !important;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 24px;
+  }
+  .services .container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .services .service-card {
+    background: #e9eaeb;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* obsah vlevo */
+    gap: 10px;
+    text-align: left;
+  }
+  .services .service-card__title {
+    color: var(--Black);
+    font-family: "Sora", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    text-align: left;
+  }
+  .services .service-card__desc {
+    color: var(--Base-700);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .services .service-card .btn-ghost-accent {
+    display: inline-flex;
+    padding: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background: #fff;
+    color: var(--Accent);
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    align-self: flex-start;
+  }
+  .services .service-card__image {
+    width: 100%;
+    height: clamp(180px, 42vw, 220px);
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    border-radius: 8px;
+    margin-top: 10px;
+    align-self: stretch;
+    display: block;
+  }
+  .services .row {
+    --bs-gutter-x: 8px; /* bylo 12px */
+    --bs-gutter-y: 12px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .services .row > [class*=col] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
+@media (max-width: 576px) {
+  .why {
+    /* menší boční okraje → karty budou širší */
+    padding: 80px 8px 32px 8px;
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    /* roztáhni obsah až k okrajům a zjemni gutters bootstrapu */
+    /* hlavní nadpis sekce */
+    /* odstavec pod nadpisem */
+    /* grid s boxy (pokud nepoužiješ .row) */
+  }
+  .why .container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .why .container.d-flex {
+    gap: 25px !important;
+  }
+  .why .row {
+    --bs-gutter-x: 8px; /* bylo 12px */
+    --bs-gutter-y: 12px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .why .row > [class*=col] {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .why h2.section-title {
+    color: var(--Black);
+    text-align: left; /* ← vlevo */
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    margin: 0 0 12px;
+  }
+  .why p.section-desc {
+    color: var(--Base-700);
+    text-align: left; /* ← vlevo */
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 24px; /* odsazení od gridu boxů */
+  }
+  .why .why__grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 sloupec */
+    gap: 16px;
+  }
+  .why .feature-card {
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* obsah vlevo */
+    gap: 8px;
+  }
+  .why .feature-card h3 {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 6px;
+    text-align: left;
+  }
+  .why .feature-card p {
+    font-size: 15px;
+    line-height: 20px;
+    margin: 0;
+    text-align: left;
+  }
+}
+/* =========================================================
+   DOPLNĚNÍ: sjednocení hlaviček sekcí na mobilu + zúžení odstavců
+   (Services / Why / What Drives Us)
+   ========================================================= */
+@media (max-width: 576px) {
+  /* stejné spodní odsazení wrapperu s nadpisem */
+  .services .col-md-7.mx-auto.text-center,
+  .why .text-center,
+  .drives .drives__header {
+    margin-bottom: 24px !important;
+  }
+  /* Nadpisy (h2) – stejné písmo/velikost/zarovnání */
+  .services .section-title,
+  .why .text-center > h2,
+  .drives .drives-title {
+    font-family: "Sora", sans-serif;
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 700;
+    margin: 0 0 19px;
+    text-align: center; /* změň na left, pokud má být vlevo */
+  }
+  /* Odstavec pod nadpisem – zúžený sloupec (~28 znaků) a sjednocené písmo */
+  .services .section-desc,
+  .why .text-center > h2 + p,
+  .drives .drives-subtitle {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 28ch; /* <<< zúžení textu */
+    margin: 0 auto; /* centrování pod nadpisem */
+    text-align: center;
+    text-wrap: pretty;
+  }
+}
+/* =========================================================
+   NOVÉ: What Drives Us — zúžení šířky boxů i obrázku na mobilu
+   (optická šířka jako ostatní sekce)
+   ========================================================= */
+@media (max-width: 576px) {
+  .drives {
+    /* ponecháme sekci s vnějším paddingem 8px (už máš) */
+    /* přidej vnitřní „gutter“ kontejneru, ať obsah není přes celou šířku */
+    /* jednotlivé boxy lehce zúžíme proti kontejneru */
+    /* i pravý panel s fotkou/citací stejné šířky */
+  }
+  .drives .drives__container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+  .drives .drives-item {
+    width: 100%;
+    max-width: calc(100% - 16px); /* +8px odsazení na každé straně vůči kontejneru */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .drives .testimonial-box {
+    width: 100%;
+    max-width: calc(100% - 16px);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px; /* necháme stejné vnitřní odsazení */
+  }
+}
+@media (max-width: 576px) {
+  /* Nadpisy sekcí */
+  .services .section-title,
+  .why .text-center > h2,
+  .drives .drives-title,
+  .infrastructure .section-title,
+  .refs > .container > h2 {
+    margin-left: max(var(--EdgePush), env(safe-area-inset-left));
+    margin-right: max(var(--EdgePush), env(safe-area-inset-right));
+  }
+  /* Podnadpisy / lead text pod nadpisem */
+  .services .section-desc,
+  .why .text-center > h2 + p,
+  .drives .drives-subtitle,
+  .infrastructure .section-desc {
+    margin-left: max(var(--EdgePush), env(safe-area-inset-left));
+    margin-right: max(var(--EdgePush), env(safe-area-inset-right));
+  }
+  /* Karty a jejich texty necháváme bez změny (mají vlastní paddingy) */
+}
+/* === FIX: tablet 577–992 px → logo vlevo, hamburger vpravo === */
+@media (min-width: 577px) and (max-width: 992px) {
+  .site-header .nav-list,
+  .site-header .nav-actions {
+    display: none !important;
+  } /* jen jistota */
+  .site-header .navbar-inner {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important; /* ROZHODUJÍCÍ */
+    align-items: center !important;
+    gap: 10px !important; /* menší mezera mezi prvky */
+  }
+  /* pořadí a zarovnání jistotou */
+  .site-header .brand-logo {
+    order: 1;
+    margin-left: 0 !important;
+  }
+  .site-header .hamburger {
+    order: 3;
+    margin-left: auto !important;
+    display: inline-flex !important;
+  }
+  /* volitelné: o fous menší vnitřní odsazení „karty“ headeru */
+  .site-header .navbar-shell {
+    padding: 0 20px !important;
+  }
+}
+/* Bezpečnostní síť: pro všechny ≤992 px nechť se prvky roztáhnou ke krajům */
+@media (max-width: 992px) {
+  .site-header .navbar-inner {
+    justify-content: space-between !important;
+  }
+}/*# sourceMappingURL=style.css.map */

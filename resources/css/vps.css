@@ -1,0 +1,451 @@
+@charset "UTF-8";
+/* ==============================================
+   VPS PAGE – FULL SCSS
+   ============================================== */
+/* ------------------
+   CSS VARIABLES
+   ------------------ */
+:root {
+  --Accent: #F52130;
+  --AccentHover: #ff5863;
+  --AccentActive: #d91522;
+  --White: #FFF;
+  --Black: #000;
+  --Base-100: #F5F5F5;
+  --Base-200: #E9EAEB;
+  --Base-300: #D5D7DA;
+  --Base-500: #717680;
+  --Base-700: #414651;
+  --SectionGap: 3rem;
+}
+
+/* ------------------
+   GLOBAL TEXT
+   ------------------ */
+main p,
+main .small {
+  color: var(--Base-700);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* =======================
+   HERO
+   ======================= */
+.vps-hero {
+  display: flex;
+  padding: 176px 12px 112px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --HeroImg: url("../images/Services/hero.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), var(--HeroImg) center/cover no-repeat;
+  min-height: 560px;
+}
+
+.vps-hero__title {
+  color: var(--White);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 60px;
+  margin: 0 0 16px;
+}
+
+.vps-hero__lead {
+  color: var(--White);
+  text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 0 28px;
+  max-width: 56ch;
+}
+
+.vps-hero__cta {
+  display: inline-flex;
+  min-width: 206px;
+  padding: 20px 56px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--Accent);
+  background: var(--Accent);
+  color: #fff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap; /* mobil – tlačítko vždy na jeden řádek */
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.vps-hero__cta:hover {
+  background: var(--AccentHover);
+  border-color: var(--AccentHover);
+}
+
+.vps-hero__cta:active {
+  background: var(--AccentActive);
+  border-color: var(--AccentActive);
+}
+
+.vps-hero__cta:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--Accent) 35%, transparent);
+  outline-offset: 2px;
+}
+
+/* =======================
+   SECTION: VPS FEATURES
+   ======================= */
+.vps-features {
+  padding: 128px 0 64px;
+}
+
+.vps-features h2 {
+  color: var(--Black);
+  text-align: center !important;
+  font-family: "Sora", system-ui, -apple-system, Segoe UI, Roboto, "Plus Jakarta Sans", sans-serif;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 52px;
+  margin: 34px 0 75px;
+}
+
+/* Vnější box mřížky */
+.vps-features .p-3.bg-secondary.rounded-3 {
+  display: flex;
+  padding: 16px !important;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 20px !important;
+  background: var(--Base-200) !important;
+  margin-top: 0.85rem;
+}
+
+.vps-features .p-3.bg-secondary.rounded-3 .row.m-0 {
+  margin: 0 !important;
+}
+
+/* Sloupce */
+.vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col {
+  border: 0 !important;
+  padding: 0 !important;
+  display: flex;
+}
+
+/* Vnitřek karet (ikona + text) */
+.vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+  display: flex !important;
+  padding: 18px !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  flex: 1 0 0;
+  background: transparent;
+}
+
+/* Ikona */
+.vps-features .ico-wrap {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--White);
+  flex: 0 0 auto;
+}
+
+.vps-features .ico-wrap svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Text části */
+.vps-features .row.m-0 > .col > .d-flex > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vps-features .row.m-0 > .col > .d-flex h5 {
+  margin: 0;
+  color: var(--Black);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700 !important;
+}
+
+.vps-features .row.m-0 > .col > .d-flex .small,
+.vps-features .row.m-0 > .col > .d-flex p {
+  color: var(--Base-700) !important;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Oddělovače mřížky */
+@media (min-width: 992px) {
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    border-right: 1px solid var(--Base-300);
+    border-bottom: 1px solid var(--Base-300);
+  }
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-child(3n) > .d-flex {
+    border-right: 0;
+  }
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-last-child(-n+3) > .d-flex {
+    border-bottom: 0;
+  }
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    border-right: 1px solid var(--Base-300);
+    border-bottom: 1px solid var(--Base-300);
+  }
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-child(2n) > .d-flex {
+    border-right: 0;
+  }
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-last-child(-n+2) > .d-flex {
+    border-bottom: 0;
+  }
+  .why-choose .row.m-0 {
+    flex-direction: column;
+    gap: 0.6em;
+  }
+}
+@media (max-width: 575.98px) {
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    border-right: 0;
+    border-bottom: 1px solid var(--Base-300);
+  }
+  .vps-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:last-child > .d-flex {
+    border-bottom: 0;
+  }
+  .why-choose .row.m-0 {
+    flex-direction: column;
+    gap: 0.6em;
+  }
+}
+/* =======================
+   SECTION: WHY COMPANIES CHOOSE US
+   ======================= */
+.why-choose {
+  padding: 64px 0 64px;
+  margin-top: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+.why-choose h2 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 36px;
+  margin: 0 0 10px;
+  padding: 24px 20px;
+}
+
+.why-choose .bg-white.rounded-3 {
+  background: var(--White);
+  border: 0;
+  border-radius: 16px !important;
+}
+
+.why-choose .row.m-0 {
+  margin: 0 !important;
+  --bs-gutter-x: 0;
+}
+
+/* Boxy – jen vertikální oddělovače (žádný top/bottom) */
+.why-choose .row.m-0 > .col {
+  display: flex;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: var(--White);
+  border: 0 !important;
+  border-right: 1px solid var(--Base-200) !important;
+}
+
+/* poslední v řadě bez pravého oddělovače */
+@media (min-width: 992px) {
+  .why-choose .row.m-0 > .col:nth-child(3n) {
+    border-right: 0 !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .why-choose .row.m-0 > .col:nth-child(2n) {
+    border-right: 0 !important;
+  }
+}
+@media (max-width: 575.98px) {
+  .why-choose .row.m-0 > .col {
+    border-right: 0 !important;
+  }
+}
+/* Ikon-box */
+.why-choose__icon {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--Base-200);
+  background: var(--White);
+}
+
+.why-choose__icon svg {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  display: block;
+}
+
+.why-choose .row.m-0 > .col h5 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 24px;
+  font-weight: 700 !important;
+  line-height: 28px;
+  margin: 0;
+}
+
+.why-choose .row.m-0 > .col p,
+.why-choose .row.m-0 > .col .small {
+  color: var(--Base-700);
+  text-align: center;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* =======================
+   SECTION: OUR INFRASTRUCTURE
+   ======================= */
+.infrastructure {
+  padding: 64px 0 64px;
+  text-align: center;
+}
+
+.infrastructure .section-title {
+  font-family: "Sora", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+
+.infrastructure p.section-desc {
+  margin: 0 auto 32px;
+  max-width: 70ch;
+}
+
+/* =======================
+   CTA
+   ======================= */
+.cta {
+  padding: var(--SectionGap) 0;
+  background: var(--Accent);
+  color: var(--White);
+  text-align: center;
+}
+
+.cta .section-title {
+  font-family: "Sora", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.cta .cta-button {
+  display: inline-flex;
+  padding: 16px 40px;
+  border-radius: 8px;
+  border: 1px solid var(--White);
+  background: var(--White);
+  color: var(--Accent);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta .cta-button:hover {
+  background: var(--AccentHover);
+  color: #fff;
+  border-color: var(--AccentHover);
+}
+
+/* =======================
+   RESPONSIVE TUNING
+   ======================= */
+@media (max-width: 992px) {
+  .vps-hero {
+    padding: 160px 12px 96px;
+    min-height: 520px;
+  }
+  .vps-hero__title {
+    font-size: 48px;
+    line-height: 52px;
+    margin-bottom: 14px;
+  }
+  .vps-hero__lead {
+    margin-bottom: 24px;
+  }
+  .infrastructure .section-title {
+    font-size: 32px;
+  }
+}
+@media (max-width: 576px) {
+  .vps-hero {
+    padding: 128px 12px 80px;
+    min-height: 480px;
+    scroll-margin-top: 84px;
+  }
+  .vps-hero__title {
+    font-size: 32px;
+    line-height: 38px;
+    margin-bottom: 10px;
+  }
+  .vps-hero__lead {
+    font-size: 15px;
+    margin-bottom: 20px;
+    max-width: 90%;
+  }
+  .vps-hero__cta {
+    padding: 16px 32px;
+    font-size: 15px;
+    min-width: auto;
+  }
+  .vps-features h2 {
+    font-size: 28px;
+    line-height: 34px;
+    margin: 8px 0 28px;
+  }
+  .why-choose h2 {
+    font-size: 24px;
+    padding: 16px 12px;
+    margin-bottom: 16px;
+  }
+  .infrastructure .section-title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .cta .section-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+}/*# sourceMappingURL=vps.css.map */

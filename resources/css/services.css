@@ -1,0 +1,777 @@
+@charset "UTF-8";
+/* ==============================================
+   VPS PAGE – FULL SCSS
+   ============================================== */
+/* ------------------
+   CSS VARIABLES
+   ------------------ */
+:root {
+  --Accent: #F52130;
+  --AccentHover: #ff5863;
+  --AccentActive: #d91522;
+  --White: #FFF;
+  --Black: #000;
+  --Base-100: #F5F5F5;
+  --Base-200: #E9EAEB;
+  --Base-300: #D5D7DA;
+  --Base-500: #717680;
+  --Base-700: #414651;
+  --SectionGap: 3rem;
+}
+
+/* ------------------
+   GLOBAL TEXT
+   ------------------ */
+main p,
+main .small {
+  color: var(--Base-700);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* =======================
+   HERO
+   ======================= */
+.services-hero {
+  display: flex;
+  padding: 176px 12px 112px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --HeroImg: url("../images/services/hero.jpg");
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.7) 100%), var(--HeroImg) center/cover no-repeat;
+  min-height: 560px;
+}
+
+.services-hero__title {
+  color: var(--White);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 60px;
+  margin: 0 0 16px;
+}
+
+.services-hero__lead {
+  color: var(--White);
+  text-align: center;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 0 0 28px;
+  max-width: 56ch;
+}
+
+.services-hero__cta {
+  display: inline-flex;
+  min-width: 206px;
+  padding: 20px 56px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--Accent);
+  background: var(--Accent);
+  color: #fff;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.services-hero__cta:hover {
+  background: var(--AccentHover);
+  border-color: var(--AccentHover);
+}
+
+.services-hero__cta:active {
+  background: var(--AccentActive);
+  border-color: var(--AccentActive);
+}
+
+.services-hero__cta:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--Accent) 35%, transparent);
+  outline-offset: 2px;
+}
+
+/* =======================
+   SECTION: VPS FEATURES
+   ======================= */
+.services-features {
+  padding: 128px 0 64px;
+}
+
+.services-features h2 {
+  color: var(--Black);
+  text-align: center !important;
+  font-family: "Sora", system-ui, -apple-system, Segoe UI, Roboto, "Plus Jakarta Sans", sans-serif;
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  line-height: 52px;
+  margin: 34px 0 75px;
+}
+
+/* Vnější box mřížky */
+.services-features .p-3.bg-secondary.rounded-3 {
+  display: flex;
+  padding: 16px !important;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 20px !important;
+  background: var(--Base-200) !important;
+  margin-top: 0.85rem;
+}
+
+.services-features .p-3.bg-secondary.rounded-3 .row.m-0 {
+  margin: 0 !important;
+}
+
+/* Sloupce */
+.services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col {
+  border: 0 !important;
+  padding: 0 !important;
+  display: flex;
+}
+
+/* Vnitřek karet (ikona + text) */
+.services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+  display: flex !important;
+  padding: 18px !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  flex: 1 0 0;
+  background: transparent;
+}
+
+/* Ikona */
+.services-features .ico-wrap {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  background: var(--White);
+  flex: 0 0 auto;
+}
+
+.services-features .ico-wrap svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
+
+/* Text části */
+.services-features .row.m-0 > .col > .d-flex > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.services-features .row.m-0 > .col > .d-flex h5 {
+  margin: 0;
+  color: var(--Black);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: 700 !important;
+}
+
+.services-features .row.m-0 > .col > .d-flex .small,
+.services-features .row.m-0 > .col > .d-flex p {
+  color: var(--Base-700) !important;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Oddělovače mřížky */
+@media (min-width: 992px) {
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    border-right: 1px solid var(--Base-300);
+    border-bottom: 1px solid var(--Base-300);
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-child(3n) > .d-flex {
+    border-right: 0;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-last-child(-n+3) > .d-flex {
+    border-bottom: 0;
+  }
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    border-right: 1px solid var(--Base-300);
+    border-bottom: 1px solid var(--Base-300);
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-child(2n) > .d-flex {
+    border-right: 0;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:nth-last-child(-n+2) > .d-flex {
+    border-bottom: 0;
+  }
+  .why-choose .row.m-0 {
+    flex-direction: column;
+    gap: 0.6em;
+  }
+}
+@media (max-width: 575.98px) {
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    border-right: 0;
+    border-bottom: 1px solid var(--Base-300);
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:last-child > .d-flex {
+    border-bottom: 0;
+  }
+  .why-choose .row.m-0 {
+    flex-direction: column;
+    gap: 0.6em;
+  }
+}
+/* =======================
+   SECTION: WHY COMPANIES CHOOSE US
+   ======================= */
+.why-choose {
+  padding: 64px 0 64px;
+  margin-top: 3.5rem;
+  margin-bottom: 4rem;
+}
+@media (max-width: 575.98px) {
+  .why-choose {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* padding pro mobil přepíšeme níže na 40px 16px */
+  }
+}
+
+.why-choose h2 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 32px; /* H4 */
+  font-weight: 700;
+  line-height: 36px; /* 112.5% */
+  margin: 0 0 10px;
+  padding: 24px 20px;
+}
+
+.why-choose .bg-white.rounded-3 {
+  background: var(--White);
+  border: 0;
+  border-radius: 16px !important;
+}
+
+.why-choose .row.m-0 {
+  margin: 0 !important;
+  --bs-gutter-x: 0;
+}
+
+/* Boxy – default (desktop/tablet): vertikální oddělovače */
+.why-choose .row.m-0 > .col {
+  display: flex;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  flex: 1 0 0;
+  align-self: stretch;
+  background: var(--White);
+  border: 0 !important;
+  border-right: 1px solid var(--Base-200) !important;
+}
+
+/* poslední v řadě bez pravého oddělovače */
+@media (min-width: 992px) {
+  .why-choose .row.m-0 > .col:nth-child(3n) {
+    border-right: 0 !important;
+  }
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .why-choose .row.m-0 > .col:nth-child(2n) {
+    border-right: 0 !important;
+  }
+}
+/* Ikon-box */
+.why-choose__icon {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--Base-200);
+  background: var(--White);
+}
+
+.why-choose__icon svg {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+  display: block;
+}
+
+.why-choose .row.m-0 > .col h5 {
+  color: var(--Black);
+  text-align: center;
+  font-family: "Sora", sans-serif;
+  font-size: 24px;
+  font-weight: 700 !important;
+  line-height: 28px;
+  margin: 0;
+}
+
+.why-choose .row.m-0 > .col p,
+.why-choose .row.m-0 > .col .small {
+  color: var(--Base-700);
+  text-align: center;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ===== MOBILE OVERRIDES (≤576px) — FIGMA EXACT ===== */
+@media (max-width: 576px) {
+  /* sekce */
+  .why-choose {
+    display: flex;
+    padding: 40px 16px; /* 40px top/bottom, 16px sides */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+    align-self: stretch;
+  }
+  /* bílý box */
+  .why-choose .bg-white.p-4.rounded-3 {
+    padding: 16px !important; /* přepíše .p-4 */
+    border-radius: 16px !important;
+  }
+  /* nadpis v boxu */
+  .why-choose h2 {
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px; /* 112.5% */
+    margin: 0; /* spacing řeší gap */
+    padding: 0 0 8px 0;
+    padding-top: 0.55em;
+  }
+  /* list položek – 1 sloupec, bez mezer mezi coly */
+  .why-choose .row.m-0 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  /* položka */
+  .why-choose .row.m-0 > .col {
+    padding: 16px !important;
+    gap: 8px !important;
+    align-items: center !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--Base-200, #E9EAEB) !important;
+    background: var(--White, #FFF);
+  }
+  .why-choose .row.m-0 > .col:last-child {
+    border-bottom: 0 !important;
+  }
+  /* ikon-box (zůstává, jen výslovně dle Figma) */
+  .why-choose__icon {
+    display: flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 2px solid var(--Base-200, #E9EAEB);
+    background: var(--White, #FFF);
+  }
+  .why-choose__icon svg {
+    width: 32px;
+    height: 32px;
+    aspect-ratio: 1/1;
+  }
+  /* titulek položky – H6 20/24 */
+  .why-choose .row.m-0 > .col h5 {
+    color: var(--Black, #000);
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px; /* 120% */
+    margin: 0;
+  }
+  /* text položky – Small/Medium 14 */
+  .why-choose .row.m-0 > .col p,
+  .why-choose .row.m-0 > .col .small {
+    color: var(--Base-700, #414651);
+    text-align: center;
+    font-family: "Plus Jakarta Sans";
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+/* =======================
+   SECTION: OUR INFRASTRUCTURE
+   ======================= */
+.infrastructure {
+  padding: 64px 0 64px;
+  text-align: center;
+}
+
+.infrastructure .section-title {
+  font-family: "Sora", sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  margin: 0 0 24px;
+}
+
+.infrastructure p.section-desc {
+  margin: 0 auto 32px;
+  max-width: 70ch;
+}
+
+/* =======================
+   CTA
+   ======================= */
+.cta {
+  padding: var(--SectionGap) 0;
+  background: var(--Accent);
+  color: var(--White);
+  text-align: center;
+}
+
+.cta .section-title {
+  font-family: "Sora", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.cta .cta-button {
+  display: inline-flex;
+  padding: 16px 40px;
+  border-radius: 8px;
+  border: 1px solid var(--White);
+  background: var(--White);
+  color: var(--Accent);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta .cta-button:hover {
+  background: var(--AccentHover);
+  color: #fff;
+  border-color: var(--AccentHover);
+}
+
+/* =======================
+   RESPONSIVE TUNING
+   ======================= */
+@media (max-width: 992px) {
+  .services-hero {
+    padding: 160px 12px 96px;
+    min-height: 520px;
+  }
+  .services-hero__title {
+    font-size: 1.35rem;
+    line-height: 52px;
+    margin-bottom: 14px;
+  }
+  .services-hero__lead {
+    margin-bottom: 24px;
+  }
+  .infrastructure .section-title {
+    font-size: 32px;
+  }
+}
+/* === MOBILE HERO (≤576 px) — upravené užší CTA === */
+@media (max-width: 576px) {
+  .services-hero {
+    display: flex;
+    height: 486px;
+    min-height: 486px;
+    padding: 80px 16px 64px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+    text-align: center;
+    scroll-margin-top: 84px;
+  }
+  .services-hero__title {
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: "Sora", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    margin: 0;
+  }
+  .services-hero__lead {
+    color: var(--White, #FFF);
+    text-align: center;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0;
+    max-width: 342px;
+  }
+  /* ⤵️ Užší tlačítko na mobilu (šířka i výška) */
+  .services-hero__cta {
+    display: inline-flex;
+    align-self: center; /* už ne stretch */
+    width: auto; /* žádné 100% */
+    min-width: 0; /* zruší desktop min */
+    inline-size: clamp(160px, 64vw, 280px); /* hlavně zúžení šířky */
+    padding: 14px 22px; /* menší výška i horizontální padding */
+    gap: 6px;
+    font-size: 16px;
+    margin-inline: auto; /* centrovat */
+  }
+  /* === MOBILE VPS FEATURES (≤576 px) — sekce pod hero === */
+  .services-features {
+    display: flex;
+    padding: 40px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    align-self: stretch;
+  }
+  .services-features h2 {
+    color: var(--Black, #000);
+    text-align: center !important;
+    font-family: "Sora", sans-serif;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 36px;
+    margin: 0;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 {
+    display: flex;
+    padding: 12px !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    align-self: stretch;
+    border-radius: 20px !important;
+    background: var(--Base-200, #E9EAEB) !important;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 {
+    --bs-gutter-x: 0;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col {
+    padding: 0 !important;
+    border: 0 !important;
+    display: flex;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col > .d-flex {
+    display: flex !important;
+    padding: 16px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    align-self: stretch;
+    background: transparent;
+    border-bottom: 1px solid var(--Base-300, #D5D7DA);
+    border-right: 0 !important;
+  }
+  .services-features .p-3.bg-secondary.rounded-3 .row.m-0 > .col:last-child > .d-flex {
+    border-bottom: 0;
+  }
+  .services-features .ico-wrap {
+    display: flex;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background: var(--White, #FFF);
+  }
+  .services-features .ico-wrap svg {
+    width: 20px;
+    height: 20px;
+    aspect-ratio: 1/1;
+  }
+  .services-features .row.m-0 > .col > .d-flex > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+  }
+  .services-features .row.m-0 > .col > .d-flex .small,
+  .services-features .row.m-0 > .col > .d-flex p {
+    color: var(--Base-700, #414651) !important;
+    font-family: "Plus Jakarta Sans";
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+/* 1) Specifický obrázek pro tuto podstránku */
+.services-hero--vps-server {
+  --HeroImg: url("../images/services/hero.jpg");
+}
+
+/* 2) iOS/mobil fallback – bez var() jen na malých displejích */
+@media (max-width: 576px) {
+  .services-hero--vps-server {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/services/hero.jpg") !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: scroll !important;
+  }
+}
+/* =========================================================
+   XS EDGE GUTTER – menší mezera u krajů, širší obsah (≤576)
+   (UNIFIED spacing for this page; ponechá malý okraj)
+   ========================================================= */
+:root {
+  --edge-mobile: 8px;
+} /* uprav dle chuti: 6–10px */
+@media (max-width: 576px) {
+  /* zúžime horizontální padding sekcí, tím se vše vizuálně rozšíří */
+  .services-features,
+  .why-choose {
+    padding-left: var(--edge-mobile) !important;
+    padding-right: var(--edge-mobile) !important;
+  }
+  /* a také vnitřních containerů, aby celkový okraj nebyl dvojitý */
+  .services-features .container,
+  .why-choose .container {
+    padding-left: var(--edge-mobile) !important;
+    padding-right: var(--edge-mobile) !important;
+  }
+  /* vnitřní boxy necháme vyplnit šířku containeru (bez full-bleedu) */
+  .services-features .p-3.bg-secondary.rounded-3,
+  .why-choose .bg-white.rounded-3 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-inline: 0 !important;
+    width: auto !important;
+  }
+}
+/* =========================================================
+   SERVICES TEXT — SPLIT CLEAN (bez boxů/pozadí)
+   ========================================================= */
+.services-text--split-clean {
+  /* vzdušné odsazení jako References */
+  padding: clamp(2.5em, 6vw, 5.5em) 0;
+  padding-top: 6vw;
+  background: #fff;
+}
+
+/* navazuje těsně po hero */
+.services-hero + .services-text--split-clean {
+  margin-top: 0;
+}
+
+/* dvousloupec: text : obrázek */
+.services-text--split-clean .grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: clamp(1.25em, 4vw, 3em);
+}
+
+/* sloupec s textem */
+.services-text--split-clean .col-text {
+  max-width: 62ch; /* čitelné řádky */
+}
+
+/* typografie */
+.services-text--split-clean .services-text__title {
+  font-family: "Sora", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+  line-height: 1.2;
+  color: #000;
+  margin: 0 0 0.8em 0;
+  text-align: left;
+}
+
+.services-text--split-clean .services-text__desc {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: clamp(1rem, 1.2vw, 1.125rem); /* ≈ 16–18px */
+  line-height: 1.6;
+  color: var(--Base-700);
+  margin: 0;
+  text-align: left;
+}
+
+.services-text--split-clean .services-text__desc + .services-text__desc {
+  margin-top: 0.8em;
+}
+
+/* obrázek (bez rámečků/stínů; jen jemné zaoblení – můžeš klidně odstranit) */
+.services-text--split-clean .media {
+  aspect-ratio: 16/11;
+  overflow: hidden;
+  border-radius: 0.6em;
+}
+
+.services-text--split-clean .media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* volitelně: flip pořadí (obrázek vlevo, text vpravo) přidej .is-flip na sekci */
+.services-text--split-clean.is-flip .grid {
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.services-text--split-clean.is-flip .media {
+  order: -1;
+}
+
+/* ===== Breakpointy ===== */
+@media (max-width: 992px) {
+  .services-text--split-clean {
+    padding: clamp(2em, 6vw, 3.5em) 0;
+  }
+  .services-text--split-clean .grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1em, 4vw, 1.6em);
+  }
+  /* na tabletu/mobilu ponecháme přirozené pořadí (text nad obrázkem) */
+  .services-text--split-clean.is-flip .media {
+    order: initial;
+  }
+}
+@media (max-width: 576px) {
+  /* zvýšené horní odsazení na mobilu (požadavek 8em) */
+  .services-text--split-clean {
+    /* top | left/right | bottom */
+    padding: 4em 16px 4em;
+  }
+  .services-text--split-clean .services-text__title {
+    font-size: 32px;
+    line-height: 44px;
+    margin-bottom: 20px;
+  }
+  .services-text--split-clean .services-text__desc {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 0 0 1.5em;
+  }
+  .services-text--split-clean .media {
+    aspect-ratio: 16/10;
+  }
+}/*# sourceMappingURL=services.css.map */
