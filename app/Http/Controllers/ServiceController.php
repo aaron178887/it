@@ -53,19 +53,17 @@ class ServiceController extends Controller
         $safeSlug = null;
 
         try {
-            // 1) Validace slugu
+            
             $safeSlug = Slug::assert($data['slug']);
 
-            // 1a) Preflight kolize složky → rovnou 422 (bez vytváření složek)
-            //    nově tolerujeme prázdnou existující složku (idempotence po předchozím pádu requestu)
+            //  Preflight kolize složky → rovnou 422 (bez vytváření složek)
+            //     tolerujeme prázdnou existující složku (idempotence po předchozím pádu requestu)
             if ($msg = $this->checkServiceDirCollision($safeSlug, true)) {
                 throw ValidationException::withMessages(['slug' => $msg]);
             }
 
-            // 2) Dál už pracujeme pouze s validovaným slugem
             $data['slug'] = $safeSlug;
-
-            // 3) Sestav payloady a ulož v transakci
+            
             [$pageData, $serviceData] = $this->buildCreatePayloads($request, $data);
 
             DB::transaction(function () use ($pageData, $serviceData) {
@@ -73,7 +71,6 @@ class ServiceController extends Controller
                 Service::create(array_merge(['id' => $page->id], $serviceData));
             });
 
-            // 4) Invalidate cache a hotovo
             $this->invalidateServiceNav();
 
             return redirect()
@@ -133,16 +130,15 @@ class ServiceController extends Controller
         $newSlug = null;
 
         try {
-            // 1) Validace nového slugu dřív, než sáhneš na FS
+            
             $newSlug = Slug::assert($data['slug']);
 
-            // 2) Přesun FS složky, pokud se slug mění
+            // Přesun FS složky, pokud se slug mění
             if ($newSlug !== $oldSlug) {
                 FileHelper::moveServiceDirectory($oldSlug, $newSlug);
                 $movedFS = true;
             }
 
-            // 3) Postav payloady a ulož v transakci
             [$pageData, $serviceData] = $this->buildUpdatePayloads($request, $service, $data);
 
             DB::transaction(function () use ($service, $pageData, $serviceData) {
@@ -150,7 +146,6 @@ class ServiceController extends Controller
                 $service->update($serviceData);
             });
 
-            // 4) Invalidate cache a hotovo
             $this->invalidateServiceNav();
 
             return redirect()
@@ -254,7 +249,6 @@ class ServiceController extends Controller
         $slug = $service->page->slug;
 
         DB::transaction(function () use ($service) {
-            // mažeme Page (Service má vazbu na Page id; dle schématu může být cascade/constraint)
             $service->page->delete();
         });
 
