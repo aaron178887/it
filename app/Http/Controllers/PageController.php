@@ -28,7 +28,6 @@ class PageController extends Controller
 
     /**
      * Musí odpovídat route použité v ContactController/CaptchaService pro HMAC podpis.
-     * Ideálně sjednotit do configu nebo shared konstanta.
      */
     private const CONTACT_FORM_ROUTE = '/kontakt';
 
@@ -68,7 +67,6 @@ class PageController extends Controller
     {
         $view = (string) $request->query('view', 'service');
 
-        // id je pouze číselné → jinak null
         $rawId = $request->query('id');
         $id    = is_numeric($rawId) ? (int) $rawId : null;
 
