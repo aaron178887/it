@@ -1,11 +1,3 @@
-/* ==============================================
-   REFERENCES PAGE – FULL SCSS (scoped)
-   Vše mimo :root je omezené na .page-references
-   ============================================== */
-
-/* ------------------
-   VARIABLES (globální, v pohodě)
-   ------------------ */
 :root {
   --Accent: #F52130;
   --AccentHover: #ff5863;
@@ -24,12 +16,9 @@
   --edge-mobile: 8px; /* mobilní okraj */
 }
 
-/* ODE TUD VŠE SCOPUJEME NA WRAPPER */
 .page-references {
 
-  /* ------------------
-     GLOBAL TEXT (jen v rámci této stránky)
-     ------------------ */
+
   main p,
   main .small {
     color: var(--Base-700);
@@ -88,10 +77,8 @@
     }
   }
 
-  /* ===== MOBILE HERO (≤576 px) — Figma exact ===== */
+  /* ===== MOBILE HERO (≤576 px) ===== */
   @media (max-width: 576px) {
-    /* DŮLEŽITÉ: už nepřepisuj globální .container!
-       Omez jen na kontejner přímo v hero. */
     .references-hero .container {
       display: flex;
       flex-direction: column;
@@ -291,9 +278,9 @@
                 color: var(--Black);
                 align-self: stretch;
                 font-family: "Sora", sans-serif;
-                font-size: 24px;          /* Heading/H5 */
+                font-size: 24px;         
                 font-weight: 700;
-                line-height: 28px;        /* 116.667% */
+                line-height: 28px;       
                 margin: 0;
               }
 
@@ -301,7 +288,7 @@
                 color: var(--Base-700);
                 align-self: stretch;
                 font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-                font-size: 16px;          /* Text/Normal/Medium */
+                font-size: 16px;          
                 font-weight: 500;
                 margin: 0;
               }
@@ -317,7 +304,7 @@
                 background: var(--Base-100);
                 color: var(--Accent);
                 font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-                font-size: 16px;          /* Text/Normal/Semi Bold */
+                font-size: 16px;        
                 font-weight: 700;
                 cursor: pointer;
                 text-align: left;
@@ -379,7 +366,7 @@
     }
   }
 }  
-/* ====== PARTNERS – cílené overrides pro stránku Reference ====== */
+/* ====== PARTNERS ====== */
 .page-references .refs-partners {
   /* hlavička sekce (PC) */
   > .container > .col-md-7.mx-auto.text-center.mb-4 {
@@ -449,7 +436,6 @@
     text-align: left !important;
   }
 
-  /* mobilní jemné úpravy (stejné omezení – jen v Partners na Reference) */
   @media (max-width: 575.98px) {
     > .container { padding-left: 0 !important; padding-right: 0 !important; }
 
@@ -464,7 +450,6 @@
     }
     .ref-card > .logo-wrap { padding: 0 52px !important; height: 160px !important; }
 
-    /* tvé mobilní rozestupy kolem titulku */
     .ref-card > h4.ref-title { margin-top: 12px !important; margin-bottom: 2px !important; }
   }
 }
