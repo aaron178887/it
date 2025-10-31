@@ -609,7 +609,7 @@ trait ServiceTrait
 
             $prevSameIndex = $current[$i] ?? null;
 
-            // Pozor: bez fallbacku – jen ID/index
+            // bez fallbacku – jen ID/index
             $fileGuess = $this->pickSectionFile($request, $i, $sec['id'] ?? null, $usedUploads);
 
             // Stabilní volba ID
