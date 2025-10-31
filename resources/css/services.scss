@@ -262,7 +262,6 @@ main .small {
   border-right: 1px solid var(--Base-200) !important;
 }
 
-/* poslední v řadě bez pravého oddělovače */
 @media (min-width: 992px) {
   .why-choose .row.m-0 > .col:nth-child(3n) { border-right: 0 !important; }
 }
@@ -312,7 +311,7 @@ main .small {
   /* sekce */
   .why-choose {
     display: flex;
-    padding: 40px 16px;           /* 40px top/bottom, 16px sides */
+    padding: 40px 16px;           
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -322,7 +321,7 @@ main .small {
 
   /* bílý box */
   .why-choose .bg-white.p-4.rounded-3 {
-    padding: 16px !important;     /* přepíše .p-4 */
+    padding: 16px !important;    
     border-radius: 16px !important;
   }
 
@@ -380,7 +379,7 @@ main .small {
     font-family: "Sora", sans-serif;
     font-size: 20px; 
     font-weight: 700;
-    line-height: 24px;            /* 120% */
+    line-height: 24px;            
     margin: 0;
   }
 
@@ -452,7 +451,6 @@ main .small {
   .infrastructure .section-title { font-size: 32px; }
 }
 
-/* === MOBILE HERO (≤576 px) — upravené užší CTA === */
 @media (max-width: 576px) {
   .services-hero {
     display: flex;
@@ -491,14 +489,14 @@ main .small {
   /* ⤵️ Užší tlačítko na mobilu (šířka i výška) */
   .services-hero__cta {
     display: inline-flex;
-    align-self: center;              /* už ne stretch */
-    width: auto;                     /* žádné 100% */
-    min-width: 0;                    /* zruší desktop min */
-    inline-size: clamp(160px, 64vw, 280px); /* hlavně zúžení šířky */
-    padding: 14px 22px;              /* menší výška i horizontální padding */
+    align-self: center;            
+    width: auto;                     
+    min-width: 0;                    
+    inline-size: clamp(160px, 64vw, 280px); 
+    padding: 14px 22px;              
     gap: 6px;
     font-size: 16px;
-    margin-inline: auto;             /* centrovat */
+    margin-inline: auto;             
   }
 
   /* === MOBILE VPS FEATURES (≤576 px) — sekce pod hero === */
@@ -604,9 +602,8 @@ main .small {
 
 /* =========================================================
    XS EDGE GUTTER – menší mezera u krajů, širší obsah (≤576)
-   (UNIFIED spacing for this page; ponechá malý okraj)
    ========================================================= */
-:root { --edge-mobile: 8px; } /* uprav dle chuti: 6–10px */
+:root { --edge-mobile: 8px; } 
 
 @media (max-width: 576px) { 
   /* zúžime horizontální padding sekcí, tím se vše vizuálně rozšíří */
@@ -661,7 +658,7 @@ main .small {
 
 /* sloupec s textem */
 .services-text--split-clean .col-text {
-  max-width: 62ch; /* čitelné řádky */
+  max-width: 62ch; 
 }
 
 /* typografie */
@@ -678,7 +675,7 @@ main .small {
 .services-text--split-clean .services-text__desc {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-weight: 500;
-  font-size: clamp(1rem, 1.2vw, 1.125rem); /* ≈ 16–18px */
+  font-size: clamp(1rem, 1.2vw, 1.125rem); 
   line-height: 1.6;
   color: var(--Base-700);
   margin: 0;
@@ -723,16 +720,13 @@ main .small {
     gap: clamp(1em, 4vw, 1.6em);
   }
 
-  /* na tabletu/mobilu ponecháme přirozené pořadí (text nad obrázkem) */
   .services-text--split-clean.is-flip .media {
     order: initial;
   }
 }
 
 @media (max-width: 576px) {
-  /* zvýšené horní odsazení na mobilu (požadavek 8em) */
   .services-text--split-clean {
-    /* top | left/right | bottom */
     padding: 4em 16px 4em;
   }
 
