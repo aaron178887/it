@@ -49,7 +49,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Sora:wght@600;700&display=swap">
   </noscript>
 
-  {{-- ✅ Preload LCP hero obrázku --}}
+  {{-- Preload LCP hero obrázku --}}
   <link rel="preload" as="image" href="/images/home_hero.jpg" fetchpriority="high">
 
   @php
