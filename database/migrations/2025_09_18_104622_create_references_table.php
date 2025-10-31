@@ -1,6 +1,5 @@
 <?php
 // database/migrations/2024_01_01_000000_create_references_table.php
-// (použij svoje timestamp jméno souboru – důležité je, že tu NENÍ is_published)
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
