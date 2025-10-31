@@ -13,8 +13,6 @@ return new class extends Migration {
             $table->json('data')->nullable();     // všechny společné informace
             $table->boolean('is_published')->default(true);
             $table->timestamps();
-
-            // malé tabulky nepotřebují další indexy
         });
     }
 
