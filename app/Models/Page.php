@@ -19,9 +19,6 @@ class Page extends Model
         'is_published' => 'boolean',
     ];
 
-    /**
-     * Service linked to this page (1:1 relationship)
-     */
     public function service(): HasOne
     {
         return $this->hasOne(Service::class, 'id', 'id');
