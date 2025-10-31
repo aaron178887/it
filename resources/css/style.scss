@@ -106,7 +106,6 @@ h1, h2, h3 { font-family: 'Sora', sans-serif; }
   background:$accent; border:1px solid $accent; color:#fff;
   font-weight: 800;
 
-  /* bez hover animací – jen změna tónu při :hover/:active */
   transition: none;
 
   &:hover   { background: $accent-hover; border-color: $accent-hover; }
@@ -156,21 +155,16 @@ h1, h2, h3 { font-family: 'Sora', sans-serif; }
     }
   }
 
-  /* ---- Dlaždice značek (ikony / obrázky) ----
-     * funguje pro <img> i pro <i class="fa-brands ..."> uvnitř wrapperu .logo-tile
-     * není nutné měnit HTML – níže je i selektor na stávající .d-flex řádek
-  */
+ 
   $tile-size: 56px;
   $tile-radius: 14px;
 
-  /* řádek s dlaždicemi (tvé aria-hidden="true" d-flex …) */
   .bg-cta-grad > .d-flex.justify-content-center.mb-3,
   .cta-logos {
     gap: var(--cta-gap);
     flex-wrap: wrap;
   }
 
-  /* varianta A: máš wrapper .logo-tile (doporučeno) */
   .logo-tile {
     width: $tile-size; height: $tile-size;
     display: inline-flex; align-items: center; justify-content: center;
@@ -180,21 +174,18 @@ h1, h2, h3 { font-family: 'Sora', sans-serif; }
     box-shadow: 0 4px 14px rgba(0,0,0,.18);
     line-height: 0;
 
-    /* bez hover efektů */
     transition: none;
     &:hover, &:active { transform: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
 
-    /* FontAwesome ikony uvnitř */
     i { font-size: calc($tile-size * .46); opacity: .95; }
   }
 
-  /* varianta B: přímo obrázek – obalíme vizuálně paddingem a pozadím */
   .bg-cta-grad > .d-flex.justify-content-center.mb-3 > img,
   .cta-logos > img,
   img.cta-logo {
     display: inline-block;
-    width: $tile-size; height: $tile-size;            /* sjednocený box */
-    padding: 10px;                                     /* „okraj“ kolem loga */
+    width: $tile-size; height: $tile-size;           
+    padding: 10px;                                    
     border-radius: $tile-radius;
     background: rgba(255,255,255,.08);
     border: 1px solid rgba(255,255,255,.22);
@@ -214,7 +205,6 @@ h1, h2, h3 { font-family: 'Sora', sans-serif; }
   }
 }
 
-/* ---- Responzivní doladění ---- */
 @media (max-width: 992px) {
   .contact-action { margin-top: 2.5rem; }
 }
