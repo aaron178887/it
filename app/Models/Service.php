@@ -17,9 +17,7 @@ class Service extends Model
         'menu_icon_svg',
     ];
 
-    /**
-     * Page associated with this service (1:1 relationship)
-     */
+    
     public function page(): BelongsTo
     {
         return $this->belongsTo(Page::class, 'id', 'id');
