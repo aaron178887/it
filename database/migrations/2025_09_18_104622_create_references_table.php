@@ -11,12 +11,12 @@ return new class extends Migration {
         Schema::create('references', function (Blueprint $table) {
             $table->id();
 
-            $table->string('logo')->nullable();      // např. /images/references/client-logo1.svg
-            $table->string('logo_alt')->nullable();  // alt text loga
+            $table->string('logo')->nullable();      
+            $table->string('logo_alt')->nullable(); 
 
-            $table->string('title', 160);            // „E-shop v cloudu“
-            $table->text('description');             // odstavec pod názvem
-            $table->string('tag', 160)->nullable();  // např. „Kubernetes“
+            $table->string('title', 160);       
+            $table->text('description');          
+            $table->string('tag', 160)->nullable();  
 
             $table->timestamps();
         });
