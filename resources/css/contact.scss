@@ -179,18 +179,17 @@ main {
   text-underline-offset: 2px;
 }
 
-/* ===== Form – base (OPRAVA 100% šířky) ===== */
 #contact-form {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* na mobilech níže přepnu na stretch */
+  align-items: flex-start; 
   gap: 32px !important;
 
-  > div { width: 100%; min-width: 0; } /* wrappery vstupů */
+  > div { width: 100%; min-width: 0; } 
 
   :is(input, textarea) {
-    display: block;            /* nikdy ne flex, aby se to nerozbilo */
-    width: 100% !important;    /* plná šířka */
+    display: block;            
+    width: 100% !important;   
     max-width: 100%;
     box-sizing: border-box;
     padding: 12px 16px !important;
@@ -215,13 +214,11 @@ main {
   }
 }
 
-/* focus efekty */
 .contact-section form :is(input, textarea):focus {
   outline: none;
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--Accent) 20%, transparent);
 }
 
-/* Map – base */
 section iframe.rounded-3 {
   display: block;
   width: 100%;
@@ -288,7 +285,6 @@ section iframe.rounded-3 {
   .contact-hero__lead  { margin-bottom: 24px; }
   .contact-section     { padding-top: 32px; }
 
-  /* Při tabletu zachováme dřívější flex, jen sjednotíme mezeru */
   .contact-section .d-flex.flex-column.flex-lg-row {
     gap: 24px !important;
   }
@@ -349,7 +345,7 @@ section iframe.rounded-3 {
 
   /* Form karta */
   #contact-form {
-    align-items: stretch;              /* děti (wrappy + button) přes celou šířku */
+    align-items: stretch;              
     padding: 16px !important;
     border-radius: 12px !important;
     background: var(--White) !important;
@@ -428,7 +424,6 @@ section iframe.rounded-3 {
   }
 }
 
-/* Volitelné: sjednocení mezer okolo horní karty vlevo */
 .contact-section section[aria-labelledby="company-id-heading"] {
   margin-bottom: 0 !important; /* ruší případné mb-2 z HTML */
 }
